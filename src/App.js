@@ -1,9 +1,14 @@
-import './index.css';
+import Header from './Header';
+import UserOutputBox from './UserOutputBox';
+import UserInputBox from './UserInputBox';
+
 
 function App() {
   return (
     <div className="App">
-       Application to be created.
+       <Header/>
+       <UserOutputBox />
+       <UserInputBox />
     </div>
   );
 }
