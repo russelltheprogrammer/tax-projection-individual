@@ -1,4 +1,4 @@
-# Link to taxprojectionindividual application --> This application is still in process. The link will be posted once it is completed.
+# Link to Tax Projection Individual application --> This application is still in process. The link will be posted once it is completed.
 
 
 ## Overview 
