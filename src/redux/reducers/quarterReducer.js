@@ -1,4 +1,6 @@
-const reducer = (state = 1, action) => {
+const initialState = 1;
+
+const reducer = (state = initialState, action) => {
     switch(action.type){
         case "1":
             state = action.payload;
@@ -13,7 +15,7 @@ const reducer = (state = 1, action) => {
             state = action.payload;
             break;
         default:
-            state = 1;
+            return state;
     };
 }
 
