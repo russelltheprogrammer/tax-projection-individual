@@ -12,9 +12,10 @@ const quarter = useSelector((state) => state.quarter);
 const dispatch = useDispatch();
 
 const handleQuarterChange = () => {
+    let tempQuarter = quarterState;
     e.preventDefault();
-    if(quarterState === 1 || 2 || 3 || 4){
-    dispatch(changeQuarter(quarterState));
+    if(tempQuarter === 1 || 2 || 3 || 4){
+    dispatch(changeQuarter(tempQuarter));
     }
     else {
         console.log("Not a quarter, change number to 1, 2, 3 or 4");
@@ -22,18 +23,19 @@ const handleQuarterChange = () => {
 };
 
 const onChange = (e) => {
-    let tempQuarter = e.target.quarterinput;
+    let tempQuarter = e.target.value;
     setQuarterState(tempQuarter);
 };
 
     return ( 
         <div>
-            <form>
+            <form onSubmit={handleQuarterChange}> 
                 <label htmlFor="quarterinput">Quarter:</label><br/>
-                <input type="text" id="quarter-input" name="quarterinput" placeholder="Quarter" onChange={onChange}></input><br/>
+                <input type="text" id="quarter-input" name="quarterinput" placeholder="Quarter" onChange={onChange} value={quarterState}></input><br/>
             </form>
-            <button type="submit" onSubmit={handleQuarterChange}>SUBMIT</button><br/>
-            {quarter}
+            <button type="submit">SUBMIT</button><br/>
+            {quarter}<br/>
+            {quarterState}
         </div>
      );
 }
