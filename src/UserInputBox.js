@@ -1,4 +1,3 @@
-import { e } from "mathjs";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,29 +10,35 @@ const [ quarterState, setQuarterState ] = useState(1);
 const quarter = useSelector((state) => state.quarter);
 const dispatch = useDispatch();
 
-const handleQuarterChange = () => {
+const handleQuarterSubmit = () => {
     let tempQuarter = quarterState;
-    e.preventDefault();
-    if(tempQuarter === 1 || 2 || 3 || 4){
+    
+    if([1, 2, 3, 4].indexOf(tempQuarter) > -1){
     dispatch(changeQuarter(tempQuarter));
+    setQuarterState(tempQuarter);
     }
     else {
         console.log("Not a quarter, change number to 1, 2, 3 or 4");
+        setQuarterState(1);
+        console.log(tempQuarter);
     }
 };
 
-const onChange = (e) => {
+const onQuarterChange = (e) => {
     let tempQuarter = e.target.value;
     setQuarterState(tempQuarter);
 };
 
     return ( 
         <div>
-            <form onSubmit={handleQuarterChange}> 
                 <label htmlFor="quarterinput">Quarter:</label><br/>
-                <input type="text" id="quarter-input" name="quarterinput" placeholder="Quarter" onChange={onChange} value={quarterState}></input><br/>
-            </form>
-            <button type="submit">SUBMIT</button><br/>
+                <select name="quarterinput" id="quarter-input" onChange={onQuarterChange} value={quarterState}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select><br/>
+            <button type="submit" onClick={handleQuarterSubmit}>SUBMIT</button><br/>
             {quarter}<br/>
             {quarterState}
         </div>
