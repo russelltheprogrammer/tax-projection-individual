@@ -1,31 +1,29 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { changeQuarter } from "./redux/action-creators/actionsMaster";
 
 const UserInputBox = () => {
 
-const [ quarterState, setQuarterState ] = useState(1);
-
 const quarter = useSelector((state) => state.quarter);
 const dispatch = useDispatch();
 
+const [ quarterState, setQuarterState ] = useState(1);
+
 const handleQuarterSubmit = () => {
-    let tempQuarter = quarterState;
+    let tempQuarter = parseInt(quarterState);
     
     if([1, 2, 3, 4].indexOf(tempQuarter) > -1){
     dispatch(changeQuarter(tempQuarter));
     setQuarterState(tempQuarter);
     }
     else {
-        console.log("Not a quarter, change number to 1, 2, 3 or 4");
+        console.log("Error in code, why was a number not chosen?");
         setQuarterState(1);
-        console.log(tempQuarter);
     }
 };
 
 const onQuarterChange = (e) => {
-    let tempQuarter = e.target.value;
+    let tempQuarter = parseInt(e.target.value);
     setQuarterState(tempQuarter);
 };
 
