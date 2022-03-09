@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import quarterReducer from "./quarterReducer";
 
-const reducersMaster = combineReducers({
+const rootReducer = combineReducers({
     quarter: quarterReducer
 });
 
-export default reducersMaster;
+export default rootReducer;

@@ -1,10 +1,10 @@
 const CHANGEQUARTER = "CHANGEQUARTER";
 
-export const changeQuarter = (number) => {
+export const changeQuarter = (quarter) => {
     return (dispatch) => {
         dispatch({
             type: CHANGEQUARTER,
-            payload: number
+            payload: quarter
         })
     }
 }
