@@ -1,14 +1,14 @@
 import Header from './Header';
-import UserOutputBox from './UserOutputBox';
-import UserInputBox from './UserInputBox';
+import UserTitleBox from './UserTitleBox';
+import TaxAssumptionsBox from './TaxAssumptionsBox';
 
 
 function App() {
   return (
     <div className="App">
        <Header/>
-       <UserOutputBox />
-       <UserInputBox />
+       <UserTitleBox />
+       <TaxAssumptionsBox />
     </div>
   );
 }
