@@ -5,13 +5,49 @@ const quarterOptionsValues = [
     { id: 3, quarter: 4 }
 ];
 
-const taxInfoElements = [
-    { id: 0, element: "QUARTER"},
-    { id: 1, element: "FILING STATUS"},
-    { id: 2, element: "ITEMIZED OR STANDARD"},
-    { id: 3, element: "DEPENDENTS"},
-    { id: 4, element: "STATE RESIDENCY"},
-    { id: 5, element: "QBI ELIGIBLE"}
+const taxAssumptionsElements = [
+    { id: 0, element: "QUARTER", 
+    array: [
+        { id: 0, arrayValue: 1 },
+        { id: 1, arrayValue: 2 },
+        { id: 2, arrayValue: 3 },
+        { id: 3, arrayValue: 4 }
+    ]},
+    { id: 1, element: "FILING STATUS", 
+    array: [
+        { id: 0, arrayValue: "SINGLE" },
+        { id: 1, arrayValue: "MFJ" },
+        { id: 2, arrayValue: "MFS" },
+        { id: 3, arrayValue: "HOH" }
+    ]},
+    { id: 2, element: "STANDARD/ITEMIZED", 
+    array: [
+        { id: 0, arrayValue: "STANDARD" },
+        { id: 1, arrayValue: "ITEMIZED" }
+    ]},
+    { id: 3, element: "DEPENDENTS", 
+    array: [
+        { id: 0, arrayValue: 1 },
+        { id: 1, arrayValue: 2 },
+        { id: 2, arrayValue: 3 },
+        { id: 3, arrayValue: 4 },
+        { id: 4, arrayValue: 5 },
+        { id: 5, arrayValue: 6 },
+        { id: 6, arrayValue: 7 },
+        { id: 7, arrayValue: 8 },
+        { id: 8, arrayValue: 9 }
+    ]},
+    { id: 4, element: "STATE RESIDENCY", 
+    array: [
+        { id: 0, arrayValue: "NONE" },
+        { id: 1, arrayValue: "NEW YORK" },
+        { id: 2, arrayValue: "NEW YORK CITY" }
+    ]},
+    { id: 5, element: "QBI ELIGIBLE", 
+    array: [
+        { id: 0, arrayValue: "NO" },
+        { id: 1, arrayValue: "YES" }
+    ]}
 ];
 
 const taxIncomeElements = [
@@ -41,4 +77,4 @@ const taxItemizedDeductionElements = [
     { id: 5, element: "OTHER DEDUCTIONS"},
 ];
 
-export { quarterOptionsValues, taxInfoElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements };
+export { taxAssumptionsElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements };
