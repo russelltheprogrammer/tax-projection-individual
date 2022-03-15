@@ -15,12 +15,32 @@ body {
   padding-bottom: 2%;
 }
 
+.header-heading p {
+  max-width: 60%;
+  margin-left: 20%;
+}
+
+#output-name-box{
+  width: 24%;
+  margin-left: 38%;
+  margin-bottom: 1%;
+  background-color: white;
+  font-size: 20px;
+  text-align: center;
+  padding: 2%;
+  border: 3px groove black;
+}
+
+#output-name-box span{
+ padding-right: 10%;
+}
+
 #output-box{
-  width: 50%;
-  margin-left: 25%;
+  width: 70%;
+  margin-left: 15%;
   align-items: center;
   text-align: center;
-  border: 3px solid red;
+  border: 3px groove black;
   background-color: white;
 }
 
