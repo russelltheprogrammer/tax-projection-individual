@@ -1,2 +1,2 @@
-want to change title of each output section
-need to create function of how to add state value to data output. Perhaps if function based on value of elements vs value of state?
+handleSubmit needs to be change
+Need to add other value to redux
