@@ -20,7 +20,7 @@ body {
   margin-left: 20%;
 }
 
-#output-name-box{
+#user-title-box{
   width: 24%;
   margin-left: 38%;
   margin-bottom: 1%;
@@ -31,11 +31,11 @@ body {
   border: 3px groove black;
 }
 
-#output-name-box span{
+#user-title-box span{
  padding-right: 10%;
 }
 
-#output-box{
+#tax-assumptions-box{
   width: 70%;
   margin-left: 15%;
   align-items: center;
@@ -44,9 +44,8 @@ body {
   background-color: white;
 }
 
-#input-box{
-  width: 50%;
-  padding: 2%;
-  align-items: center;
-  text-align: center;
+.tax-assumptions-box-title{
+ text-align: center;
+ font-weight: bold;
+ font-size: 20px;
 }
