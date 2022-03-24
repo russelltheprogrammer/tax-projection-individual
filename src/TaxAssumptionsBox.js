@@ -76,8 +76,8 @@ const handleChange = (elementId, e) => {
            <div className="tax-assumptions-box-title">TAX ASSUMPTIONS</div>
            <div className="d-flex align-content-around flex-wrap justify-content-start">
                {taxAssumptionsElements.map((item) =>
-               <div className="p-3" key={item.id}>{item.element}:&nbsp; 
-                <select name={item.element} id="tax-assumption-item" onChange={(e) => handleChange(item.id, e)}>
+               <div className="p-3 tax-assumption-title" key={item.id}>{item.element}:&nbsp; 
+                <select name={item.element} className="tax-assumption-select" id="tax-assumption-item" onChange={(e) => handleChange(item.id, e)}>
                 {item.array.map((value) => 
                     <option key={value.id} value={value.arrayValue}>{value.arrayValue}</option>
                 )};
@@ -86,7 +86,7 @@ const handleChange = (elementId, e) => {
                )}
                
            </div>
-            <button type="submit" onClick={handleQuarterSubmit}>SUBMIT</button><br/>
+            <button className="tax-assumption-submit-button" type="submit" onClick={handleQuarterSubmit}>SUBMIT</button><br/>
             {quarter}
             {filingStatusState}
             {standardState}
