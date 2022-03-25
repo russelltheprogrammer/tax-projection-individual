@@ -1,24 +1,26 @@
+import { taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements } from "./constants";
+
 const NumbersInput = () => {
     return ( 
-        <div>
-            <div className="output-box-title">INCOME</div>
-                <div className="d-flex align-content-around flex-wrap justify-content-start">
+        <div id="numbers-input-box">
+            <div className="numbers-input-title">INCOME</div>
+                <ul className="list-group list-group-flush">
                     {taxIncomeElements.map((item) =>
-                    <div className="p-3" key={item.id}>{item.element}: </div>
+                    <li className="list-group-item list-group-item-primary numbers-list-element" key={item.id}>{item.element}: </li>
                     )}
-                </div>
-                <div className="output-box-title">ADJUSTMENTS</div>
-                <div className="d-flex align-content-around flex-wrap justify-content-start">
+                </ul>
+                <div className="numbers-input-title">ADJUSTMENTS</div>
+                <ul className="list-group list-group-flush">
                     {taxAdjustmentElements.map((item) =>
-                    <div className="p-3" key={item.id}>{item.element}: </div>
+                    <li className="list-group-item list-group-item-danger numbers-list-element" key={item.id}>{item.element}: </li>
                     )}
-                </div>
-            <div className="output-box-title">ITEMIZED DEDUCTIONS</div>
-                <div className="d-flex align-content-around flex-wrap justify-content-start">
+                </ul>
+            <div className="numbers-input-title">ITEMIZED DEDUCTIONS</div>
+                <ul className="list-group list-group-flush">
                     {taxItemizedDeductionElements.map((item) =>
-                    <div className="p-3" key={item.id}>{item.element}: </div>
+                    <li className="list-group-item list-group-item-danger numbers-list-element" key={item.id}>{item.element}: </li>
                     )}
-                </div>
+                </ul>
         </div>
      );
 }
