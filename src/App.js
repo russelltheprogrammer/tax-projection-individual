@@ -1,6 +1,8 @@
 import Header from './Header';
 import UserTitleBox from './UserTitleBox';
 import TaxAssumptionsBox from './TaxAssumptionsBox';
+import NumbersInput from './NumbersInput';
+import Footer from './Footer';
 
 
 function App() {
@@ -9,6 +11,8 @@ function App() {
        <Header/>
        <UserTitleBox />
        <TaxAssumptionsBox />
+       <NumbersInput />
+       <Footer />
     </div>
   );
 }
