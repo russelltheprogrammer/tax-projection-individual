@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeQuarter } from "./redux/action-creators/actionsMaster";
+import { changeQuarter, changeFilingStatus, changeStandard, changeDependents, changeResidency, changeQbi } from "./redux/action-creators/actionsMaster";
 import { taxAssumptionsElements } from "./constants";
 
 const TaxAssumptionsBox = () => {
 
 const quarter = useSelector((state) => state.quarter);
+const filingStatus = useSelector((state) => state.filingStatus);
+const standard = useSelector((state) => state.standard);
+const dependents = useSelector((state) => state.dependents);
+const residency = useSelector((state) => state.residency);
+const qbi = useSelector((state) => state.qbi);
 const dispatch = useDispatch();
 
 const [ quarterState, setQuarterState ] = useState(1);
@@ -15,15 +20,32 @@ const [ dependentsState, setDependentsState ] = useState(1);
 const [ residencyState, setResidencyState ] = useState("NONE");
 const [ qbiState, setQbiState ] = useState("NO");
 
-const handleQuarterSubmit = () => {
+const handleSubmit = () => {
+    // have to parseInt numbers
     let tempQuarter = parseInt(quarterState);
+    let tempFilingStatus = filingStatusState;
+    let tempStandard = standardState;
+    let tempDependents = parseInt(dependentsState);
+    let tempResidency = residencyState;
+    let tempQbi = qbiState;
 
-    if([1, 2, 3, 4].indexOf(tempQuarter) > -1){
-    dispatch(changeQuarter(tempQuarter));
-    setQuarterState(tempQuarter);
+    try {
+        dispatch(changeQuarter(tempQuarter));
+        dispatch(changeFilingStatus(tempFilingStatus));
+        dispatch(changeStandard(tempStandard));
+        dispatch(changeDependents(tempDependents));
+        dispatch(changeResidency(tempResidency));
+        dispatch(changeQbi(tempQbi));
+        setQuarterState(tempQuarter);
+        setFilingStatusState(tempFilingStatus);
+        setStandardState(tempStandard);
+        setDependentsState(tempDependents);
+        setResidencyState(tempResidency);
+        setQbiState(tempQbi);
     }
-    else {
-        console.log("Error in code, why was a number not chosen?");
+    
+    catch(err) {
+        console.log(err);
     }
 };
 
@@ -31,7 +53,7 @@ const handleChange = (elementId, e) => {
     let tempValue = "";
     // If a value from TaxAssumptionsElements is a number it needs to be parsed to a number as the map function makes it a string, see TaxAssumptionsElements 
     // in constants to identify what data are numbers.
-    if(elementId == 0 || elementId == 3){
+    if(elementId === 0 || elementId === 3){
         tempValue = parseInt(e.target.value);
     }
     else{
@@ -64,20 +86,13 @@ const handleChange = (elementId, e) => {
 
     return ( 
         <div>
-        {/* <div id="input-box">
-                <select name="quarterinput" id="quarter-input" onChange={onQuarterChange} value={quarterState}>
-                    {quarterOptionsValues.map((value) => 
-                        <option key={value.id} value={value.quarter}>{value.quarter}</option>
-                    )};
-                </select>
-        </div> */}
         <div id="tax-assumptions-box">
         <div className="container-fluid">
            <div className="tax-assumptions-box-title">TAX ASSUMPTIONS</div>
            <div className="d-flex align-content-around flex-wrap justify-content-start">
                {taxAssumptionsElements.map((item) =>
-               <div className="p-3 tax-assumption-title" key={item.id}>{item.element}:&nbsp; 
-                <select name={item.element} className="tax-assumption-select" id="tax-assumption-item" onChange={(e) => handleChange(item.id, e)}>
+               <div className="p-3 tax-assumptions-title" key={item.id}>{item.element}:&nbsp; 
+                <select name={item.element} className="tax-assumptions-select" id="tax-assumption-item" onChange={(e) => handleChange(item.id, e)}>
                 {item.array.map((value) => 
                     <option key={value.id} value={value.arrayValue}>{value.arrayValue}</option>
                 )};
@@ -86,13 +101,13 @@ const handleChange = (elementId, e) => {
                )}
                
            </div>
-            <button className="tax-assumption-submit-button" type="submit" onClick={handleQuarterSubmit}>SUBMIT</button><br/>
+            <button className="tax-assumptions-submit-button" type="submit" onClick={handleSubmit}>SUBMIT</button><br/>
             {quarter}
-            {filingStatusState}
-            {standardState}
-            {dependentsState}
-            {residencyState}
-            {qbiState}
+            {filingStatus}
+            {standard}
+            {dependents}
+            {residency}
+            {qbi}
         </div>
        </div>
        </div>
