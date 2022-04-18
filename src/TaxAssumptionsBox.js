@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeQuarter, changeFilingStatus, changeStandard, changeDependents, changeResidency, changeQbi } from "./redux/action-creators/actionsMaster";
+import { changeQuarter, changeFilingStatus, changeStandard, changeDependents, changeResidency } from "./redux/action-creators/actionsMaster";
 import { taxAssumptionsElements } from "./constants";
 
 const TaxAssumptionsBox = () => {
@@ -10,7 +10,6 @@ const filingStatus = useSelector((state) => state.filingStatus);
 const standard = useSelector((state) => state.standard);
 const dependents = useSelector((state) => state.dependents);
 const residency = useSelector((state) => state.residency);
-const qbi = useSelector((state) => state.qbi);
 const dispatch = useDispatch();
 
 const [ quarterState, setQuarterState ] = useState(1);
@@ -18,7 +17,6 @@ const [ filingStatusState, setFilingStatusState ] = useState("SINGLE");
 const [ standardState, setStandardState ] = useState("STANDARD");
 const [ dependentsState, setDependentsState ] = useState(1);
 const [ residencyState, setResidencyState ] = useState("NONE");
-const [ qbiState, setQbiState ] = useState("NO");
 
 const handleSubmit = () => {
     // have to parseInt numbers
@@ -27,7 +25,6 @@ const handleSubmit = () => {
     let tempStandard = standardState;
     let tempDependents = parseInt(dependentsState);
     let tempResidency = residencyState;
-    let tempQbi = qbiState;
 
     try {
         dispatch(changeQuarter(tempQuarter));
@@ -35,13 +32,11 @@ const handleSubmit = () => {
         dispatch(changeStandard(tempStandard));
         dispatch(changeDependents(tempDependents));
         dispatch(changeResidency(tempResidency));
-        dispatch(changeQbi(tempQbi));
         setQuarterState(tempQuarter);
         setFilingStatusState(tempFilingStatus);
         setStandardState(tempStandard);
         setDependentsState(tempDependents);
         setResidencyState(tempResidency);
-        setQbiState(tempQbi);
     }
     
     catch(err) {
@@ -76,9 +71,6 @@ const handleChange = (elementId, e) => {
         case 4:
             setResidencyState(tempValue);
             break; 
-        case 5:
-            setQbiState(tempValue);
-            break;
         default:
             console.log("No case was selected");    
     };
@@ -107,7 +99,6 @@ const handleChange = (elementId, e) => {
             {standard}
             {dependents}
             {residency}
-            {qbi}
         </div>
        </div>
        </div>
