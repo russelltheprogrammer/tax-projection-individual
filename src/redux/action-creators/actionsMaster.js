@@ -3,7 +3,6 @@ const CHANGEFILINGSTATUS = "CHANGEFILINGSTATUS";
 const CHANGESTANDARD = "CHANGESTANDARD";
 const CHANGEDEPENDENTS = "CHANGEDEPENDENTS";
 const CHANGERESIDENCY = "CHANGERESIDENCY";
-const CHANGEQBI = "CHANGEQBI";
 
 export const changeQuarter = (quarter) => {
     return (dispatch) => {
@@ -46,15 +45,6 @@ export const changeResidency = (residency) =>{
         dispatch({
             type: CHANGERESIDENCY,
             payload: residency
-        })
-    }
-};
-
-export const changeQbi = (qbi) =>{
-    return (dispatch) => {
-        dispatch({
-            type: CHANGEQBI,
-            payload: qbi
         })
     }
 };
