@@ -1,7 +1,7 @@
 const Footer = () => {
     return ( 
         <div id="footer">
-            Footer
+            Created By <a href="https://russelltheprogrammer.github.io/personal-webpage/" target="_blank">RusselltheProgrammer</a>
         </div>
      );
 }
