@@ -36,39 +36,48 @@ const taxAssumptionsElements = [
         { id: 0, arrayValue: "NONE" },
         { id: 1, arrayValue: "NEW YORK" },
         { id: 2, arrayValue: "NEW YORK CITY" }
-    ]},
-    { id: 5, element: "QBI ELIGIBLE", 
-    array: [
-        { id: 0, arrayValue: "NO" },
-        { id: 1, arrayValue: "YES" }
     ]}
 ];
 
 const taxIncomeElements = [
-    { id: 1, element: "WAGES (W-2)"},
-    { id: 2, element: "INTEREST"},
-    { id: 3, element: "DIVIDENDS"},
-    { id: 4, element: "RETIREMENT INCOME"},
-    { id: 5, element: "CAPITAL GAINS/(LOSSES)"},
-    { id: 6, element: "BUSINESS INCOME (SCHEDULE C)"},
-    { id: 7, element: "OTHER INCOME"}
+    { id: 0, element: "WAGES (W-2)", hardValue: "wages" },
+    { id: 1, element: "INTEREST", hardValue: "interest" },
+    { id: 2, element: "DIVIDENDS", hardValue: "dividends"  },
+    { id: 3, element: "RETIREMENT INCOME", hardValue: "retirementIncome" },
+    { id: 4, element: "CAPITAL GAINS/(LOSSES)", hardValue: "capital"},
+    { id: 5, element: "BUSINESS INCOME (SCHEDULE C)", hardValue: "business"},
+    { id: 6, element: "OTHER INCOME", hardValue: "otherIncome"}
 ];
 
 const taxAdjustmentElements = [
-    { id: 1, element: "HSA CONTRIBUTIONS"},
-    { id: 2, element: "DEDUCTBILE S/E TAX"},
-    { id: 3, element: "S/E INSURANCE"},
-    { id: 4, element: "RETIREMENT DEDUCTION"},
-    { id: 5, element: "STUDENT LOAN INTEREST"},
-    { id: 6, element: "OTHER ADJUSTMENTS"}
+    { id: 0, element: "HSA CONTRIBUTIONS", hardValue: "hsa" },
+    { id: 1, element: "DEDUCTIBLE S/E TAX", hardValue: "deductibleSE" },
+    { id: 2, element: "S/E INSURANCE", hardValue: "insurance" },
+    { id: 3, element: "RETIREMENT DEDUCTION", hardValue: "retirementDeduction" },
+    { id: 4, element: "STUDENT LOAN INTEREST", hardValue: "studentLoan" },
+    { id: 5, element: "OTHER ADJUSTMENTS", hardValue: "otherAdjustments" }
 ];
 
 const taxItemizedDeductionElements = [
-    { id: 1, element: "MEDICAL"},
-    { id: 2, element: "TAXES PAID"},
-    { id: 3, element: "INTEREST PAID"},
-    { id: 4, element: "CHARITY"},
-    { id: 5, element: "OTHER DEDUCTIONS"},
+    { id: 0, element: "MEDICAL", hardValue: "medical" },
+    { id: 1, element: "TAXES PAID", hardValue: "taxesPaid" },
+    { id: 2, element: "INTEREST PAID", hardValue: "interestPaid" },
+    { id: 3, element: "CHARITY", hardValue: "charity" },
+    { id: 4, element: "OTHER ITEMIZED DEDUCTIONS", hardValue: "otherItemized" },
 ];
 
-export { taxAssumptionsElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements };
+const taxOtherFederal = [
+    { id: 0, element: "QUALIFIED BUSINESS INCOME DEDUCTION", hardValue: "qbi" },
+    { id: 1, element: "OTHER FEDERAL DEDUCTIONS", hardValue: "otherFedDeductions" },
+    { id: 2, element: "OTHER FEDERAL TAXES", hardValue: "otherFedTaxes" }
+];
+
+const taxOtherNewYork = [
+    { id: 0, element: "OTHER NEW YORK DEDUCTIONS", hardValue: "otherNYDeductions" },
+    { id: 1, element: "NEW YORK ADDITIONS", hardValue: "nyAdditions" },
+    { id: 2, element: "NEW YORK SUBTRACTIONS", hardValue: "nySubtractions" },
+    { id: 3, element: "OTHER NEW YORK TAXES", hardValue: "otherNYTaxes" }
+
+];
+
+export { taxAssumptionsElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherNewYork };
