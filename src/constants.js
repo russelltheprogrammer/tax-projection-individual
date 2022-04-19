@@ -44,10 +44,11 @@ const taxIncomeElements = [
     { id: 1, element: "INTEREST", hardValue: "interest" },
     { id: 2, element: "DIVIDENDS", hardValue: "dividends"  },
     { id: 3, element: "RETIREMENT INCOME", hardValue: "retirementIncome" },
-    { id: 4, element: "CAPITAL GAINS/(LOSSES)", hardValue: "capital"},
-    { id: 5, element: "BUSINESS INCOME (SCHEDULE C)", hardValue: "business"},
+    { id: 4, element: "CAPITAL GAINS/(LOSSES)", hardValue: "capitalIncome"},
+    { id: 5, element: "BUSINESS INCOME (SCHEDULE C)", hardValue: "businessIncome"},
     { id: 6, element: "OTHER INCOME", hardValue: "otherIncome"}
 ];
+
 
 const taxAdjustmentElements = [
     { id: 0, element: "HSA CONTRIBUTIONS", hardValue: "hsa" },
@@ -60,8 +61,8 @@ const taxAdjustmentElements = [
 
 const taxItemizedDeductionElements = [
     { id: 0, element: "MEDICAL", hardValue: "medical" },
-    { id: 1, element: "TAXES PAID", hardValue: "taxesPaid" },
-    { id: 2, element: "INTEREST PAID", hardValue: "interestPaid" },
+    { id: 1, element: "TAXES PAID", hardValue: "taxesPaidItemized" },
+    { id: 2, element: "INTEREST PAID", hardValue: "interestPaidItemized" },
     { id: 3, element: "CHARITY", hardValue: "charity" },
     { id: 4, element: "OTHER ITEMIZED DEDUCTIONS", hardValue: "otherItemized" },
 ];
@@ -73,7 +74,7 @@ const taxOtherFederal = [
 ];
 
 const taxOtherNewYork = [
-    { id: 0, element: "OTHER NEW YORK DEDUCTIONS", hardValue: "otherNYDeductions" },
+    { id: 0, element: "OTHER NEW YORK INCOME/DEDUCTIONS", hardValue: "otherNYIncomeDeductions" },
     { id: 1, element: "NEW YORK ADDITIONS", hardValue: "nyAdditions" },
     { id: 2, element: "NEW YORK SUBTRACTIONS", hardValue: "nySubtractions" },
     { id: 3, element: "OTHER NEW YORK TAXES", hardValue: "otherNYTaxes" }
