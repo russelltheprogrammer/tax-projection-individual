@@ -1,5 +1,17 @@
+Notes
 
+Want to add print form option? Yes
+Add a safe harbor calculation section? Maybe in a different version of this application
+Complete the code for my NumbersInput reset button
 
-Want to add print form option
+Structure
+ID
+Tax Assumptions
+Numbers Input
+Numbers Output + Calculated Tax + Quarterly Calculated Tax
+Payments + Credits Input
+Total Payments + Tax Due/Overpaid Output
+Notes Section
+
 
 
