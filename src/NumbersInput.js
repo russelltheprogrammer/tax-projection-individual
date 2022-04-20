@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherNewYork } from "./constants";
+import { taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState } from "./constants";
+import NumbersInputComponent from "./NumbersInputComponent";
 
 
 const NumbersInput = () => {
@@ -27,11 +28,11 @@ const NumbersInput = () => {
         qbi: "0",
         otherFedDeductions: "0",
         otherFedTaxes: "0",
-        otherNYIncomeDeductions: "0",
-        nyAdditions: "0",
-        nySubtractions: "0",
-        otherNYTaxes: "0"
-});
+        otherStateIncomeDeductions: "0",
+        stateAdditions: "0",
+        stateSubtractions: "0",
+        otherStateTaxes: "0"
+    });
 
     const handleInputChange = (e) => {
 
@@ -42,53 +43,28 @@ const NumbersInput = () => {
         ...oldNumbersValues,
         [name]: value
     });
-};
+    };
 
-// DRY COMMENT --- make the below return into separate components, or map inside of map, or one large map of all by editing code below?
-// Separate components doesn't seem to make sense because it separates my data.
+    // Need to complete
+    const resetNumbersValuesState = () => {
+
+    setNumbersValues();
+    }
 
     return ( 
         <div id="numbers-input-box">
-            <div className="numbers-input-title">INCOME</div>
-                <ul className="list-group list-group-flush">
-                    {taxIncomeElements.map((item) =>
-                    <li className="list-group-item list-group-item-primary numbers-list-element" key={item.id}>{item.element}:
-                    <input type="text" className="numbers-input-element" name={item.hardValue} value={numbersValues[item.hardValue]} 
-                    onChange={handleInputChange}/></li>
-                    )}
-                </ul>
-                <div className="numbers-input-title">ADJUSTMENTS</div>
-                <ul className="list-group list-group-flush">
-                    {taxAdjustmentElements.map((item) =>
-                    <li className="list-group-item list-group-item-danger numbers-list-element" key={item.id}>{item.element}:
-                    <input type="text" className="numbers-input-element"  name={item.hardValue} value={numbersValues[item.hardValue]} 
-                    onChange={handleInputChange}/></li>
-                    )}
-                </ul>
-            <div className="numbers-input-title">ITEMIZED DEDUCTIONS</div>
-                <ul className="list-group list-group-flush">
-                    {taxItemizedDeductionElements.map((item) =>
-                    <li className="list-group-item list-group-item-danger numbers-list-element" key={item.id}>{item.element}:
-                    <input type="text" className="numbers-input-element"  name={item.hardValue} value={numbersValues[item.hardValue]} 
-                    onChange={handleInputChange}/></li>
-                    )}
-                </ul>
-            <div className="numbers-input-title">FEDERAL OTHER</div>
-                <ul className="list-group list-group-flush">
-                    {taxOtherFederal.map((item) =>
-                    <li className="list-group-item list-group-item-secondary numbers-list-element" key={item.id}>{item.element}:
-                    <input type="text" className="numbers-input-element"  name={item.hardValue} value={numbersValues[item.hardValue]} 
-                    onChange={handleInputChange}/></li>
-                    )}
-                </ul>
-            <div className="numbers-input-title">NEW YORK OTHER</div>
-                <ul className="list-group list-group-flush">
-                    {taxOtherNewYork.map((item) =>
-                    <li className="list-group-item list-group-item-secondary numbers-list-element" key={item.id}>{item.element}:
-                    <input type="text" className="numbers-input-element" name={item.hardValue} value={numbersValues[item.hardValue]} 
-                    onChange={handleInputChange} /></li>
-                    )}
-                </ul>
+            <NumbersInputComponent elementData={taxIncomeElements} title={"INCOME"} color={"primary"} numbersValues={numbersValues} 
+            handleInputChange={handleInputChange} />
+            <NumbersInputComponent elementData={taxAdjustmentElements} title={"ADJUSTMENTS"} color={"danger"} numbersValues={numbersValues} 
+            handleInputChange={handleInputChange} />
+            <NumbersInputComponent elementData={taxItemizedDeductionElements} title={"ITEMIZED DEDUCTIONS"} color={"danger"} numbersValues={numbersValues} 
+            handleInputChange={handleInputChange} />
+            <NumbersInputComponent elementData={taxOtherFederal} title={"FEDERAL OTHER"} color={"secondary"} numbersValues={numbersValues} 
+            handleInputChange={handleInputChange} />
+            <NumbersInputComponent elementData={taxOtherState} title={"STATE OTHER"} color={"secondary"} numbersValues={numbersValues} 
+            handleInputChange={handleInputChange} />
+            <button id="numbers-input-reset-button" onClick={resetNumbersValuesState}>RESET</button>
+            
         </div>
      );
 }
