@@ -73,12 +73,12 @@ const taxOtherFederal = [
     { id: 2, element: "OTHER FEDERAL TAXES", hardValue: "otherFedTaxes" }
 ];
 
-const taxOtherNewYork = [
-    { id: 0, element: "OTHER NEW YORK INCOME/DEDUCTIONS", hardValue: "otherNYIncomeDeductions" },
-    { id: 1, element: "NEW YORK ADDITIONS", hardValue: "nyAdditions" },
-    { id: 2, element: "NEW YORK SUBTRACTIONS", hardValue: "nySubtractions" },
-    { id: 3, element: "OTHER NEW YORK TAXES", hardValue: "otherNYTaxes" }
+const taxOtherState = [
+    { id: 0, element: "OTHER STATE INCOME/DEDUCTIONS", hardValue: "otherStateIncomeDeductions" },
+    { id: 1, element: "STATE ADDITIONS", hardValue: "stateAdditions" },
+    { id: 2, element: "STATE SUBTRACTIONS", hardValue: "stateSubtractions" },
+    { id: 3, element: "OTHER STATE TAXES", hardValue: "otherStateTaxes" }
 
 ];
 
-export { taxAssumptionsElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherNewYork };
+export { taxAssumptionsElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState };
