@@ -12,18 +12,18 @@ const dependents = useSelector((state) => state.dependents);
 const residency = useSelector((state) => state.residency);
 const dispatch = useDispatch();
 
-const [ quarterState, setQuarterState ] = useState(1);
+const [ quarterState, setQuarterState ] = useState("1");
 const [ filingStatusState, setFilingStatusState ] = useState("SINGLE");
 const [ standardState, setStandardState ] = useState("STANDARD");
-const [ dependentsState, setDependentsState ] = useState(1);
+const [ dependentsState, setDependentsState ] = useState("1");
 const [ residencyState, setResidencyState ] = useState("NONE");
 
 const handleSubmit = () => {
     // have to parseInt numbers
-    let tempQuarter = parseInt(quarterState);
+    let tempQuarter = quarterState;
     let tempFilingStatus = filingStatusState;
     let tempStandard = standardState;
-    let tempDependents = parseInt(dependentsState);
+    let tempDependents = dependentsState;
     let tempResidency = residencyState;
 
     try {
@@ -45,15 +45,8 @@ const handleSubmit = () => {
 };
 
 const handleChange = (elementId, e) => {
-    let tempValue = "";
-    // If a value from TaxAssumptionsElements is a number it needs to be parsed to a number as the map function makes it a string, see TaxAssumptionsElements 
-    // in constants to identify what data are numbers.
-    if(elementId === 0 || elementId === 3){
-        tempValue = parseInt(e.target.value);
-    }
-    else{
-        tempValue = e.target.value;
-    }
+    let tempValue = e.target.value;
+
     // Each case goes in order from the TaxAssumptionsElements Element value from constants. If you break the order, the function will not perform properly.
     switch(elementId){
         case 0:
