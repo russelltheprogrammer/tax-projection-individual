@@ -19,7 +19,6 @@ const [ dependentsState, setDependentsState ] = useState("1");
 const [ residencyState, setResidencyState ] = useState("NONE");
 
 const handleSubmit = () => {
-    // have to parseInt numbers
     let tempQuarter = quarterState;
     let tempFilingStatus = filingStatusState;
     let tempStandard = standardState;
@@ -86,7 +85,7 @@ const handleChange = (elementId, e) => {
                )}
                
            </div>
-            <button className="tax-assumptions-submit-button" type="submit" onClick={handleSubmit}>SUBMIT</button><br/>
+            <button id="tax-assumptions-submit-button" className="submit-button" type="submit" onClick={handleSubmit}>SUBMIT</button><br/>
             {quarter}
             {filingStatus}
             {standard}
