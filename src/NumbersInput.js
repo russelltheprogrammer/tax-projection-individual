@@ -1,51 +1,73 @@
 import React, { useState } from "react";
 import { taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, numbersInputInitialState } from "./constants";
 import NumbersInputComponent from "./NumbersInputComponent";
+import NumbersOutputWithTax from "./NumbersOutputWithTax";
+import { useSelector, useDispatch } from "react-redux";
+import { changeNumbersInput } from "./redux/action-creators/actionsMaster";
 
 
 const NumbersInput = () => {
 
-    const [ numbersValues, setNumbersValues ] = useState(numbersInputInitialState);
+    const numbersInputValues = useSelector((state) => state.numbersInputValues);
+    const dispatch = useDispatch();
+
+    const [ numbersInputValuesState, setNumbersInputValuesState ] = useState(numbersInputInitialState);
 
     const handleInputChange = (e) => {
 
         const { name, value } = e.target;
-        const oldNumbersValues = numbersValues;
+        const oldNumbersInputValuesState = numbersInputValuesState;
 
-        setNumbersValues({
-            ...oldNumbersValues,
+        setNumbersInputValuesState({
+            ...oldNumbersInputValuesState,
             [name]: value
         });
     };
 
-    const resetNumbersValuesState = () => setNumbersValues({ ...numbersInputInitialState});
+    const resetNumbersValuesState = () => {
+
+        dispatch(changeNumbersInput(numbersInputInitialState));
+        setNumbersInputValuesState({ ...numbersInputInitialState});
+    };
 
     const handleSubmit = () => {
-       
+       let tempNumbersInputValues = numbersInputValuesState;
     
         try {
-          
+            dispatch(changeNumbersInput(tempNumbersInputValues));
+            setNumbersInputValuesState (tempNumbersInputValues);
         }
-        
         catch(err) {
             console.log(err);
         }
-    }
+    };
 
     return ( 
-        <div id="numbers-input-box">
-            <NumbersInputComponent elementData={taxIncomeElements} title={"INCOME"} color={"primary"} numbersValues={numbersValues} 
-            handleInputChange={handleInputChange} />
-            <NumbersInputComponent elementData={taxAdjustmentElements} title={"ADJUSTMENTS"} color={"danger"} numbersValues={numbersValues} 
-            handleInputChange={handleInputChange} />
-            <NumbersInputComponent elementData={taxItemizedDeductionElements} title={"ITEMIZED DEDUCTIONS"} color={"danger"} numbersValues={numbersValues} 
-            handleInputChange={handleInputChange} />
-            <NumbersInputComponent elementData={taxOtherFederal} title={"FEDERAL OTHER"} color={"secondary"} numbersValues={numbersValues} 
-            handleInputChange={handleInputChange} />
-            <NumbersInputComponent elementData={taxOtherState} title={"STATE OTHER"} color={"secondary"} numbersValues={numbersValues} 
-            handleInputChange={handleInputChange} />
-             <button id="numbers-input-submit-button" className="submit-button" onClick={handleSubmit} type="submit">SUBMIT</button><br/>
-            <button id="numbers-input-reset-button" className="reset-button" onClick={resetNumbersValuesState}>RESET</button>
+        <div>
+            <div id="numbers-input-box">
+                <header className="box-title">INPUT NUMBERS</header>
+                <NumbersInputComponent elementData={taxIncomeElements} title={"INCOME"} color={"primary"} numbersInputValuesState={numbersInputValuesState} 
+                handleInputChange={handleInputChange} />
+                <NumbersInputComponent elementData={taxAdjustmentElements} title={"ADJUSTMENTS"} color={"danger"} numbersInputValuesState={numbersInputValuesState} 
+                handleInputChange={handleInputChange} />
+                <NumbersInputComponent elementData={taxItemizedDeductionElements} title={"ITEMIZED DEDUCTIONS"} color={"danger"} numbersInputValuesState={numbersInputValuesState} 
+                handleInputChange={handleInputChange} />
+                <NumbersInputComponent elementData={taxOtherFederal} title={"FEDERAL OTHER"} color={"secondary"} numbersInputValuesState={numbersInputValuesState} 
+                handleInputChange={handleInputChange} />
+                <NumbersInputComponent elementData={taxOtherState} title={"STATE OTHER"} color={"secondary"} numbersInputValuesState={numbersInputValuesState} 
+                handleInputChange={handleInputChange} />
+                <button id="numbers-input-submit-button" className="submit-button" onClick={handleSubmit} type="submit">SUBMIT</button><br/>
+                <button id="numbers-input-reset-button" className="reset-button" onClick={resetNumbersValuesState}>RESET</button>
+            </div>
+            <div>
+                <NumbersOutputWithTax numbersInputValuesState={numbersInputValuesState}
+                    taxIncomeElements={taxIncomeElements}
+                    taxAdjustmentElements={taxAdjustmentElements}
+                    taxItemizedDeductionElements={taxItemizedDeductionElements}
+                    taxOtherFederal={taxOtherFederal}
+                    taxOtherState={taxOtherState}
+                 />
+            </div>
         </div>
      );
 }
