@@ -1,7 +1,7 @@
 const Footer = () => {
     return ( 
         <div id="footer">
-            Created By <a href="https://russelltheprogrammer.github.io/personal-webpage/" target="_blank" rel="noreferrer" >RusselltheProgrammer</a>
+            Developed And Built By <a href="https://russelltheprogrammer.github.io/personal-webpage/" target="_blank" rel="noreferrer"><b>Russell Monteith</b></a>
         </div>
      );
 }
