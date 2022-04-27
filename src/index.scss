@@ -50,7 +50,7 @@ body {
   background-color: white;
 }
 
-.tax-assumptions-box-title{
+.box-title{
  text-align: center;
  font-weight: bold;
  font-size: 20px;
@@ -135,6 +135,15 @@ body {
 .reset-button:hover{
   background-color: red;
   color: white;
+}
+
+#numbers-output-with-tax{
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 2%;
+  background-color: white;
+  padding: 1%;
+
 }
 
 #footer{
