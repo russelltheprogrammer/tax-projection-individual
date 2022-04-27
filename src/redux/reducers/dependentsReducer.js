@@ -1,4 +1,4 @@
-const initialState = 1;
+const initialState = "1";
 
 const reducer = (state = initialState, action) => {
     switch(action.type){

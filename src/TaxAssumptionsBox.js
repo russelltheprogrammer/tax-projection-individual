@@ -72,7 +72,7 @@ const handleChange = (elementId, e) => {
         <div>
         <div id="tax-assumptions-box">
         <div className="container-fluid">
-           <div className="tax-assumptions-box-title">TAX ASSUMPTIONS</div>
+           <div className="box-title">TAX ASSUMPTIONS</div>
            <div className="d-flex align-content-around flex-wrap justify-content-start">
                {taxAssumptionsElements.map((item) =>
                <div className="p-3 tax-assumptions-title" key={item.id}>{item.element}:&nbsp; 
