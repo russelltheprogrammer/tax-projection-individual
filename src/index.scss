@@ -143,7 +143,19 @@ body {
   margin-top: 2%;
   background-color: white;
   padding: 1%;
+}
 
+.table-header{
+  background-color: lightgrey;
+}
+
+.table-description-item{
+  font-weight: 500;
+}
+
+.table-total-row{
+  font-weight: bolder;
+  background-color: lightgrey;
 }
 
 #footer{
