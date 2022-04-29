@@ -49,7 +49,6 @@ const numbersInputInitialState = {
     businessIncome: "0",
     otherIncome: "0",
     hsa: "0",
-    deductibleSE: "0",
     insurance: "0",
     retirementDeduction: "0",
     studentLoan: "0",
@@ -65,7 +64,21 @@ const numbersInputInitialState = {
     otherStateIncomeDeductions: "0",
     stateAdditions: "0",
     stateSubtractions: "0",
-    otherStateTaxes: "0"
+    otherStateTaxes: "0",
+    fedWagesWithholding: "0",
+    fedPYOP: "0",
+    fedQ1: "0",
+    fedQ2: "0",
+    fedQ3: "0",
+    fedQ4: "0",
+    fedCredits: "0",
+    stateWagesWithholding: "0",
+    statePYOP: "0",
+    stateQ1: "0",
+    stateQ2: "0",
+    stateQ3: "0",
+    stateQ4: "0",
+    stateCredits: "0"
 }
 
 const taxIncomeElements = [
@@ -81,11 +94,10 @@ const taxIncomeElements = [
 
 const taxAdjustmentElements = [
     { id: 0, element: "HSA CONTRIBUTIONS", hardValue: "hsa" },
-    { id: 1, element: "DEDUCTIBLE S/E TAX", hardValue: "deductibleSE" },
-    { id: 2, element: "S/E INSURANCE", hardValue: "insurance" },
-    { id: 3, element: "RETIREMENT DEDUCTION", hardValue: "retirementDeduction" },
-    { id: 4, element: "STUDENT LOAN INTEREST", hardValue: "studentLoan" },
-    { id: 5, element: "OTHER ADJUSTMENTS", hardValue: "otherAdjustments" }
+    { id: 1, element: "S/E INSURANCE", hardValue: "insurance" },
+    { id: 2, element: "RETIREMENT DEDUCTION", hardValue: "retirementDeduction" },
+    { id: 3, element: "STUDENT LOAN INTEREST", hardValue: "studentLoan" },
+    { id: 4, element: "OTHER ADJUSTMENTS", hardValue: "otherAdjustments" }
 ];
 
 const taxItemizedDeductionElements = [
@@ -97,16 +109,40 @@ const taxItemizedDeductionElements = [
 ];
 
 const taxOtherFederal = [
-    { id: 0, element: "QUALIFIED BUSINESS INCOME DEDUCTION", hardValue: "qbi" },
-    { id: 1, element: "OTHER FEDERAL DEDUCTIONS", hardValue: "otherFedDeductions" },
-    { id: 2, element: "OTHER FEDERAL TAXES", hardValue: "otherFedTaxes" }
+    { id: 0, element: "QUALIFIED BUSINESS INCOME DEDUCTION (NEGATIVE)", hardValue: "qbi" },
+    { id: 1, element: "OTHER FEDERAL INCOME/(DEDUCTIONS)", hardValue: "otherFedDeductions" }
 ];
 
 const taxOtherState = [
-    { id: 0, element: "OTHER STATE INCOME/DEDUCTIONS", hardValue: "otherStateIncomeDeductions" },
+    { id: 0, element: "OTHER STATE INCOME/(DEDUCTIONS)", hardValue: "otherStateIncomeDeductions" },
     { id: 1, element: "STATE ADDITIONS", hardValue: "stateAdditions" },
-    { id: 2, element: "STATE SUBTRACTIONS", hardValue: "stateSubtractions" },
-    { id: 3, element: "OTHER STATE TAXES", hardValue: "otherStateTaxes" }
+    { id: 2, element: "STATE SUBTRACTIONS (NEGATIVE)", hardValue: "stateSubtractions" }
 ];
 
-export { taxAssumptionsElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, numbersInputInitialState };
+const paymentsFederal = [
+    { id: 0, element: "WAGES WITHHOLDING", hardValue: "fedWagesWithholding" },
+    { id: 1, element: "PRIOR YEAR OVERPAYMENT", hardValue: "fedPYOP" },
+    { id: 2, element: "FIRST QUARTER ESTIMATE", hardValue: "fedQ1" },
+    { id: 3, element: "SECOND QUARTER ESTIMATE", hardValue: "fedQ2" },
+    { id: 4, element: "THIRD QUARTER ESTIMATE", hardValue: "fedQ3" },
+    { id: 5, element: "FOURTH QUARTER ESTIMATE", hardValue: "fedQ4" },
+    { id: 6, element: "CREDITS", hardValue: "fedCredits" },
+];
+
+const paymentsState = [
+    { id: 0, element: "WAGES WITHHOLDING", hardValue: "stateWagesWithholding" },
+    { id: 1, element: "PRIOR YEAR OVERPAYMENT", hardValue: "statePYOP" },
+    { id: 2, element: "FIRST QUARTER ESTIMATE", hardValue: "stateQ1" },
+    { id: 3, element: "SECOND QUARTER ESTIMATE", hardValue: "stateQ2" },
+    { id: 4, element: "THIRD QUARTER ESTIMATE", hardValue: "stateQ3" },
+    { id: 5, element: "FOURTH QUARTER ESTIMATE", hardValue: "stateQ4" },
+    { id: 6, element: "CREDITS", hardValue: "stateCredits" },
+];
+
+const otherTaxes = [
+    { id: 0, element: "OTHER FEDERAL TAXES", hardValue: "otherFedTaxes" },
+    { id: 1, element: "OTHER STATE TAXES", hardValue: "otherStateTaxes" },
+]
+
+export { numbersInputInitialState, taxAssumptionsElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, 
+    paymentsFederal, paymentsState, otherTaxes };
