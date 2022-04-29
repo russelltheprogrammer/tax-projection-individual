@@ -85,8 +85,8 @@ body {
 
 #numbers-input-box{
   margin-top: 2%;
-  width: 80%;
-  margin-left: 10%;
+  width: 60%;
+  margin-left: 20%;
   border: 3px groove black;
   background-color: white;
 }
@@ -138,8 +138,8 @@ body {
 }
 
 #numbers-output-with-tax{
-  width: 80%;
-  margin-left: 10%;
+  width: 74%;
+  margin-left: 13%;
   margin-top: 2%;
   background-color: white;
   padding: 1%;
@@ -153,9 +153,22 @@ body {
   font-weight: 500;
 }
 
+.table-na-section{
+  color: red;
+}
+
 .table-total-row{
   font-weight: bolder;
   background-color: lightgrey;
+}
+
+#taxnotes-textarea{
+ width: 74%;
+ height: 150px;
+ margin-top: 4%;
+ margin-left: 13%;
+ background-color: yellow;
+ border: 3px groove black;
 }
 
 #footer{
