@@ -1,7 +1,7 @@
 const NumbersInputComponent = ({ elementData, title, color, handleInputChange, numbersInputValuesState }) => {
 
     return ( 
-        <div>
+        <div className="numbers-input-component">
         <div className="numbers-input-title">{title}</div>
             <ul className="list-group list-group-flush">
                 {elementData.map((item) =>
