@@ -6,7 +6,7 @@ const summationFunction = ( dataToSummate, constantElement ) => {
 
     for(let i = 0; i < constantElement.length; i++){
         if(dataToSummate[constantElement[i]["hardValue"]]){
-            resultsArray.push(Number(dataToSummate[constantElement[i]["hardValue"]]));
+            resultsArray.push(parseInt(dataToSummate[constantElement[i]["hardValue"]]));
         }
         else {
             return "0";
