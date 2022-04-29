@@ -1,7 +1,9 @@
 const TaxNotes = () => {
     return ( 
-        <div>
-            TaxNotes
+        <div id="taxnotes-container">
+            <form id="taxnotes-form">
+                <textarea id="taxnotes-textarea" placeholder="Type Tax Notes Here..."></textarea>
+            </form>
         </div>
      );
 }
