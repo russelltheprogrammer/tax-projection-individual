@@ -76,7 +76,6 @@ const NumbersInput = () => {
                     taxOtherState={taxOtherState}
                     paymentsFederal={paymentsFederal}
                     paymentsState={paymentsState}
-                    otherTaxes={otherTaxes}
                  />
             </div>
         </div>
