@@ -144,5 +144,8 @@ const otherTaxes = [
     { id: 1, element: "OTHER STATE TAXES", hardValue: "otherStateTaxes" },
 ]
 
+// this will change from year to year, this is for 2022
+const MaxSETaxThreshold = 147000;
+
 export { numbersInputInitialState, taxAssumptionsElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, 
-    paymentsFederal, paymentsState, otherTaxes };
+    paymentsFederal, paymentsState, otherTaxes, MaxSETaxThreshold };
