@@ -1,11 +1,13 @@
 import summationFunction from "./summationFunction";
+import seTaxFunction from "./seTaxFunction";
 
 const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, 
-    taxOtherState, paymentsFederal, paymentsState, otherTaxes }) => {
+    taxOtherState, paymentsFederal, paymentsState }) => {
 
     const totalIncome = summationFunction(numbersInputValuesState, taxIncomeElements);
     const totalAdjustmentsBeforeSETaxDed = summationFunction(numbersInputValuesState, taxAdjustmentElements);
-    const deductibleSETax = 0;
+    const seTax = seTaxFunction(numbersInputValuesState["businessIncome"], numbersInputValuesState["wages"]);
+    const deductibleSETax = Math.round(seTax/-2);
     const totalAdjustmentsAfterSETaxDed = totalAdjustmentsBeforeSETaxDed + deductibleSETax;
     const adjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed;
     const totalItemized = summationFunction(numbersInputValuesState, taxItemizedDeductionElements);
