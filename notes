@@ -1,9 +1,11 @@
 Notes
 
+Other features ideas
 Want to add print form option? Yes
 Add commas to numbers
 Refactor NumbersOuputWithTax Component section with payments
 Add a safe harbor calculation section? Maybe in a different version of this application
+Change the color of * in the input section
 
 
 Addl Medicare taxes not calculated in S/E Tax
