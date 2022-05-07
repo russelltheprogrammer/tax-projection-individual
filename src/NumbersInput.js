@@ -46,7 +46,8 @@ const NumbersInput = () => {
     return ( 
         <div>
             <div id="numbers-input-box">
-                <header className="box-title">INPUT NUMBERS (YEAR TO DATE BY QUARTER)</header>
+                <header className="box-title">INPUT NUMBERS</header>
+                <h5 className="box-sub-title">All numbers should be input as year to date by quarter</h5>
                 <NumbersInputComponent elementData={taxIncomeElements} title={"INCOME"} color={"primary"} numbersInputValuesState={numbersInputValuesState} 
                 handleInputChange={handleInputChange} />
                 <NumbersInputComponent elementData={taxAdjustmentElements} title={"ADJUSTMENTS (SHOULD BE NEGATIVE NUMBERS)"} color={"danger"} 
