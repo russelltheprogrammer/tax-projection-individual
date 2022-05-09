@@ -10,8 +10,11 @@ Input section -change (...) to color red
 
 Addl Medicare taxes not calculated in S/E Tax
 
+Double Check Tax Brackets in constants, aka review
+
 Items that change per year
 -S/E Tax rate
+-Tax Brackets
 
 
 
