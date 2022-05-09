@@ -1,9 +1,15 @@
 import summationFunction from "./summationFunction";
+import quarterDivisionFunction from "./quarterDivisionFunction";
 import seTaxFunction from "./seTaxFunction";
+import { useSelector } from "react-redux";
+
 
 const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, 
     taxOtherState, paymentsFederal, paymentsState }) => {
 
+    
+    const quarterFromStore = useSelector(store => store.quarter);
+    const quarterToDivideTotalTax = quarterDivisionFunction(quarterFromStore);
     const totalIncome = summationFunction(numbersInputValuesState, taxIncomeElements);
     const totalAdjustmentsBeforeSETaxDed = summationFunction(numbersInputValuesState, taxAdjustmentElements);
     const seTax = seTaxFunction(numbersInputValuesState["businessIncome"], numbersInputValuesState["wages"]);
@@ -15,8 +21,18 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAd
     const totalStateOther = summationFunction(numbersInputValuesState, taxOtherState);
     const federalTaxableIncome = adjustedGrossIncome + totalItemized + totalFederalOther;
     const stateTaxableIncome = adjustedGrossIncome + totalItemized + totalStateOther;
+    const federalOtherTaxes = numbersInputValuesState["otherFedTaxes"];
+    const stateOtherTaxes = numbersInputValuesState["otherStateTaxes"];
+    const federalTaxCalculated = 0 + seTax;
+    const stateTaxCalculated = 0;
+    const totalFederalTax = Math.round(federalOtherTaxes + federalTaxCalculated);
+    const totalStateTax = Math.round(stateOtherTaxes + stateTaxCalculated);
+    const totalFederalQuarterTax = Math.round(totalFederalTax / quarterToDivideTotalTax);
+    const totalStateQuarterTax = Math.round(totalStateTax / quarterToDivideTotalTax);
     const totalFederalPayments = summationFunction(numbersInputValuesState, paymentsFederal);
     const totalStatePayments = summationFunction(numbersInputValuesState, paymentsState);
+    const totalFedTaxDueOverpaid = totalFederalQuarterTax - totalFederalPayments;
+    const totalStateTaxDueOverpaid = totalStateQuarterTax - totalStatePayments;
     const NA = "X";
 
     return (
@@ -119,26 +135,26 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAd
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL CALCULATED TAX</th>
-                            <td>FED TAX CALC</td>
-                            <td>STATE TAX CALC</td>
+                            <td>{federalTaxCalculated}</td>
+                            <td>{stateTaxCalculated}</td>
                         </tr>
 
                         <tr>
                             <th scope="row">TOTAL OTHER TAX</th>
-                            <td>{numbersInputValuesState["otherFedTaxes"]}</td>
-                            <td>{numbersInputValuesState["otherStateTaxes"]}</td>
+                            <td>{federalOtherTaxes}</td>
+                            <td>{stateOtherTaxes}</td>
                         </tr>
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL ALL TAX</th>
-                            <td>TOTAL FED TAX</td>
-                            <td>TOTAL STATE TAX</td>
+                            <td>{totalFederalTax}</td>
+                            <td>{totalStateTax}</td>
                         </tr>
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL QUARTERLY TAX DUE</th>
-                            <td>FED QTR TAX CALC</td>
-                            <td>STATE QTR TAX CALC</td>
+                            <td>{totalFederalQuarterTax}</td>
+                            <td>{totalStateQuarterTax}</td>
                         </tr>
 
                         {/* This section can be re-factored at some point */}
@@ -187,8 +203,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAd
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL TAX DUE/(OVERPAID)</th>
-                            <td>TAX - PAYMENTS</td>
-                            <td>TAX - PAYMENTS</td>
+                            <td>{totalFedTaxDueOverpaid}</td>
+                            <td>{totalStateTaxDueOverpaid}</td>
                         </tr>
 
                 </tbody>
