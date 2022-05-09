@@ -1,10 +1,10 @@
-import { MaxSETaxThreshold } from "./constants";
+import { maxSETaxThreshold } from "./constants";
 
 const seTaxFunction = (businessIncome, wages) => {
     let businessIncomeParsed = parseInt(businessIncome);
     let wagesParsed = parseInt(wages);
     let netBusinessIncome = businessIncomeParsed * .9235;
-    let wagesLessMaxSETaxThreshold = MaxSETaxThreshold - wagesParsed;
+    let wagesLessMaxSETaxThreshold = maxSETaxThreshold - wagesParsed;
     let seTax = 0;
     let addlSETax = 0;
 
