@@ -1,4 +1,4 @@
-const quarterDivisionFunction = (quarter) => {
+const annualizationFactorCalcFunction = (quarter) => {
     
     if(quarter == 1) {
         return 4;
@@ -13,8 +13,8 @@ const quarterDivisionFunction = (quarter) => {
         return 1;
     }
     else {
-        return console.log("error from quarterDivisionFunction");
+        return console.log("error from annualizationFactorCalcFunction");
     }
 };
 
-export default quarterDivisionFunction;
+export default annualizationFactorCalcFunction;
