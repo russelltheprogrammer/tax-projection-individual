@@ -1,36 +1,38 @@
 import summationFunction from "./summationFunction";
-import quarterDivisionFunction from "./quarterDivisionFunction";
+import annualizationFactorCalcFunction from "./annualizationFactorCalcFunction";
+import annualizeDataFunction from "./annualizeDataFunction";
 import seTaxFunction from "./seTaxFunction";
 import { useSelector } from "react-redux";
 
 
-const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, 
+const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, 
     taxOtherState, paymentsFederal, paymentsState }) => {
 
-    
+   
     const quarterFromStore = useSelector(store => store.quarter);
-    const quarterToDivideTotalTax = quarterDivisionFunction(quarterFromStore);
-    const totalIncome = summationFunction(numbersInputValuesState, taxIncomeElements);
-    const totalAdjustmentsBeforeSETaxDed = summationFunction(numbersInputValuesState, taxAdjustmentElements);
-    const seTax = seTaxFunction(numbersInputValuesState["businessIncome"], numbersInputValuesState["wages"]);
+    const annualizationFactor = annualizationFactorCalcFunction(quarterFromStore);
+    const taxInputDataAnnualized = annualizeDataFunction(numbersInputValuesState, annualizationFactor);
+    const totalIncome = summationFunction(taxInputDataAnnualized, taxIncomeElements);
+    const totalAdjustmentsBeforeSETaxDed = summationFunction(taxInputDataAnnualized, taxAdjustmentElements);
+    const seTax = seTaxFunction(taxInputDataAnnualized["businessIncome"], taxInputDataAnnualized["wages"]);
     const deductibleSETax = Math.round(seTax/-2);
     const totalAdjustmentsAfterSETaxDed = totalAdjustmentsBeforeSETaxDed + deductibleSETax;
     const adjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed;
-    const totalItemized = summationFunction(numbersInputValuesState, taxItemizedDeductionElements);
-    const totalFederalOther = summationFunction(numbersInputValuesState, taxOtherFederal);
-    const totalStateOther = summationFunction(numbersInputValuesState, taxOtherState);
+    const totalItemized = summationFunction(taxInputDataAnnualized, taxItemizedDeductionElements);
+    const totalFederalOther = summationFunction(taxInputDataAnnualized, taxOtherFederal);
+    const totalStateOther = summationFunction(taxInputDataAnnualized, taxOtherState);
     const federalTaxableIncome = adjustedGrossIncome + totalItemized + totalFederalOther;
     const stateTaxableIncome = adjustedGrossIncome + totalItemized + totalStateOther;
-    const federalOtherTaxes = numbersInputValuesState["otherFedTaxes"];
-    const stateOtherTaxes = numbersInputValuesState["otherStateTaxes"];
+    const federalOtherTaxes = taxInputDataAnnualized["otherFedTaxes"];
+    const stateOtherTaxes = taxInputDataAnnualized["otherStateTaxes"];
     const federalTaxCalculated = 0 + seTax;
     const stateTaxCalculated = 0;
     const totalFederalTax = Math.round(federalOtherTaxes + federalTaxCalculated);
     const totalStateTax = Math.round(stateOtherTaxes + stateTaxCalculated);
-    const totalFederalQuarterTax = Math.round(totalFederalTax / quarterToDivideTotalTax);
-    const totalStateQuarterTax = Math.round(totalStateTax / quarterToDivideTotalTax);
-    const totalFederalPayments = summationFunction(numbersInputValuesState, paymentsFederal);
-    const totalStatePayments = summationFunction(numbersInputValuesState, paymentsState);
+    const totalFederalQuarterTax = Math.round(totalFederalTax / annualizationFactor);
+    const totalStateQuarterTax = Math.round(totalStateTax / annualizationFactor);
+    const totalFederalPayments = summationFunction(paymentsInputValuesState, paymentsFederal);
+    const totalStatePayments = summationFunction(paymentsInputValuesState, paymentsState);
     const totalFedTaxDueOverpaid = totalFederalQuarterTax - totalFederalPayments;
     const totalStateTaxDueOverpaid = totalStateQuarterTax - totalStatePayments;
     const NA = "X";
@@ -50,8 +52,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAd
                         {taxIncomeElements.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
-                            <td>{numbersInputValuesState[item.hardValue]}</td>
-                            <td>{numbersInputValuesState[item.hardValue]}</td>
+                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
+                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
                         </tr>
                         )}
 
@@ -64,8 +66,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAd
                         {taxAdjustmentElements.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
-                            <td>{numbersInputValuesState[item.hardValue]}</td>
-                            <td>{numbersInputValuesState[item.hardValue]}</td>
+                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
+                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
                         </tr>
                         )}
 
@@ -89,8 +91,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAd
                          {taxItemizedDeductionElements.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
-                            <td>{numbersInputValuesState[item.hardValue]}</td>
-                            <td>{numbersInputValuesState[item.hardValue]}</td>
+                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
+                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
                         </tr>
                         )}
 
@@ -103,7 +105,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAd
                          {taxOtherFederal.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
-                            <td>{numbersInputValuesState[item.hardValue]}</td>
+                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
                             <td className="table-na-section">{NA}</td>
                         </tr>
                         )}
@@ -118,7 +120,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAd
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
                             <td className="table-na-section">{NA}</td>
-                            <td>{numbersInputValuesState[item.hardValue]}</td>
+                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
                         </tr>
                         )}
 
@@ -160,38 +162,38 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, taxIncomeElements, taxAd
                         {/* This section can be re-factored at some point */}
                         <tr>
                             <th scope="row">{paymentsFederal[0]["element"]}</th>
-                            <td>{numbersInputValuesState["fedWagesWithholding"]}</td>
-                            <td>{numbersInputValuesState["stateWagesWithholding"]}</td>
+                            <td>{paymentsInputValuesState["fedWagesWithholding"]}</td>
+                            <td>{paymentsInputValuesState["stateWagesWithholding"]}</td>
                         </tr>
                         <tr>
                             <th scope="row">{paymentsFederal[1]["element"]}</th>
-                            <td>{numbersInputValuesState["fedPYOP"]}</td>
-                            <td>{numbersInputValuesState["statePYOP"]}</td>
+                            <td>{paymentsInputValuesState["fedPYOP"]}</td>
+                            <td>{paymentsInputValuesState["statePYOP"]}</td>
                         </tr>
                         <tr>
                             <th scope="row">{paymentsFederal[2]["element"]}</th>
-                            <td>{numbersInputValuesState["fedQ1"]}</td>
-                            <td>{numbersInputValuesState["stateQ1"]}</td>
+                            <td>{paymentsInputValuesState["fedQ1"]}</td>
+                            <td>{paymentsInputValuesState["stateQ1"]}</td>
                         </tr>
                         <tr>
                             <th scope="row">{paymentsFederal[3]["element"]}</th>
-                            <td>{numbersInputValuesState["fedQ2"]}</td>
-                            <td>{numbersInputValuesState["stateQ2"]}</td>
+                            <td>{paymentsInputValuesState["fedQ2"]}</td>
+                            <td>{paymentsInputValuesState["stateQ2"]}</td>
                         </tr>
                         <tr>
                             <th scope="row">{paymentsFederal[4]["element"]}</th>
-                            <td>{numbersInputValuesState["fedQ3"]}</td>
-                            <td>{numbersInputValuesState["stateQ3"]}</td>
+                            <td>{paymentsInputValuesState["fedQ3"]}</td>
+                            <td>{paymentsInputValuesState["stateQ3"]}</td>
                         </tr>
                         <tr>
                             <th scope="row">{paymentsFederal[5]["element"]}</th>
-                            <td>{numbersInputValuesState["fedQ4"]}</td>
-                            <td>{numbersInputValuesState["stateQ4"]}</td>
+                            <td>{paymentsInputValuesState["fedQ4"]}</td>
+                            <td>{paymentsInputValuesState["stateQ4"]}</td>
                         </tr>
                         <tr>
                             <th scope="row">{paymentsFederal[6]["element"]}</th>
-                            <td>{numbersInputValuesState["fedCredits"]}</td>
-                            <td>{numbersInputValuesState["stateCredits"]}</td>
+                            <td>{paymentsInputValuesState["fedCredits"]}</td>
+                            <td>{paymentsInputValuesState["stateCredits"]}</td>
                         </tr>
                         {/* End section that can be re-factored at some point */}
 
