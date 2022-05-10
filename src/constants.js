@@ -64,7 +64,10 @@ const numbersInputInitialState = {
     otherStateIncomeDeductions: "0",
     stateAdditions: "0",
     stateSubtractions: "0",
-    otherStateTaxes: "0",
+    otherStateTaxes: "0"
+}
+
+const paymentsInputInitialState = {
     fedWagesWithholding: "0",
     fedPYOP: "0",
     fedQ1: "0",
@@ -268,7 +271,8 @@ const newYorkCityHOHTaxBrackets = [
 ];
 
 
-export { numbersInputInitialState, taxAssumptionsElements, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, 
+export { numbersInputInitialState, paymentsInputInitialState, taxAssumptionsElements, 
+    taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, 
     paymentsFederal, paymentsState, otherTaxes, maxSETaxThreshold, federalSingleTaxBrackets, federalMFJTaxBrackets, federalMFSTaxBrackets, federalHOHTaxBrackets,
     newYorkStateSingleTaxBrackets, newYorkStateMFJTaxBrackets, newYorkStateMFSTaxBrackets, newYorkStateHOHTaxBrackets, newYorkCitySingleTaxBrackets, newYorkCityMFJTaxBrackets,
     newYorkCityMFSTaxBrackets, newYorkCityHOHTaxBrackets };
