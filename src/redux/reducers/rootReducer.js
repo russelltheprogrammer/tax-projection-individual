@@ -5,6 +5,7 @@ import standardReducer from "./standardReducer";
 import dependentsReducer from "./dependentsReducer";
 import residencyReducer from "./residencyReducer";
 import numbersInputReducer from "./numbersInputReducer";
+import paymentsInputReducer from "./paymentsInputReducer";
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     standard: standardReducer,
     dependents: dependentsReducer,
     residency: residencyReducer,
-    numbersInputValues: numbersInputReducer
+    numbersInputValues: numbersInputReducer,
+    paymentsInputValues: paymentsInputReducer
 });
 
 export default rootReducer;

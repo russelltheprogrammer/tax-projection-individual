@@ -4,6 +4,7 @@ const CHANGESTANDARD = "CHANGESTANDARD";
 const CHANGEDEPENDENTS = "CHANGEDEPENDENTS";
 const CHANGERESIDENCY = "CHANGERESIDENCY";
 const CHANGENUMBERSINPUT = "CHANGENUMBERSINPUT";
+const CHANGEPAYMENTSINPUT = "CHANGEPAYMENTSINPUT";
 
 export const changeQuarter = (quarter) => {
     return (dispatch) => {
@@ -55,6 +56,15 @@ export const changeNumbersInput = (numbersInputValues) =>{
         dispatch({
             type: CHANGENUMBERSINPUT,
             payload: numbersInputValues
+        })
+    }
+};
+
+export const changePaymentsInput = (paymentsInputValues) =>{
+    return (dispatch) => {
+        dispatch({
+            type: CHANGEPAYMENTSINPUT,
+            payload: paymentsInputValues
         })
     }
 };
