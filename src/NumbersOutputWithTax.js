@@ -1,6 +1,7 @@
 import summationFunction from "./summationFunction";
 import annualizationFactorCalcFunction from "./annualizationFactorCalcFunction";
 import annualizeDataFunction from "./annualizeDataFunction";
+import childTaxCreditFunction from "./childTaxCreditFunction";
 import seTaxFunction from "./seTaxFunction";
 import { useSelector } from "react-redux";
 
@@ -10,6 +11,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
 
    
     const quarterFromStore = useSelector(store => store.quarter);
+    const dependentsFromStore = useSelector(store => store.dependents);
+    const filingStatusFromStore = useSelector(store => store.filingStatus);
     const annualizationFactor = annualizationFactorCalcFunction(quarterFromStore);
     const taxInputDataAnnualized = annualizeDataFunction(numbersInputValuesState, annualizationFactor);
     const totalIncome = summationFunction(taxInputDataAnnualized, taxIncomeElements);
@@ -17,17 +20,20 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
     const seTax = seTaxFunction(taxInputDataAnnualized["businessIncome"], taxInputDataAnnualized["wages"]);
     const deductibleSETax = Math.round(seTax/-2);
     const totalAdjustmentsAfterSETaxDed = totalAdjustmentsBeforeSETaxDed + deductibleSETax;
-    const adjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed;
+    const totalStateOther = summationFunction(taxInputDataAnnualized, taxOtherState);
+    const federalAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed;
+    const stateAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed + totalStateOther;
     const totalItemized = summationFunction(taxInputDataAnnualized, taxItemizedDeductionElements);
     const totalFederalOther = summationFunction(taxInputDataAnnualized, taxOtherFederal);
-    const totalStateOther = summationFunction(taxInputDataAnnualized, taxOtherState);
-    const federalTaxableIncome = adjustedGrossIncome + totalItemized + totalFederalOther;
-    const stateTaxableIncome = adjustedGrossIncome + totalItemized + totalStateOther;
-    const federalOtherTaxes = taxInputDataAnnualized["otherFedTaxes"];
+    const stateDependentExemptions = dependentsFromStore * -1000;
+    const federalTaxableIncome = federalAdjustedGrossIncome + totalItemized + totalFederalOther;
+    const stateTaxableIncome = parseInt(stateAdjustedGrossIncome + totalItemized + stateDependentExemptions);
+    const federalOtherTaxes = parseInt(taxInputDataAnnualized["otherFedTaxes"]);
     const stateOtherTaxes = taxInputDataAnnualized["otherStateTaxes"];
+    const federalChildTaxCredits = childTaxCreditFunction(federalAdjustedGrossIncome, dependentsFromStore, filingStatusFromStore);
     const federalTaxCalculated = 0 + seTax;
     const stateTaxCalculated = 0;
-    const totalFederalTax = Math.round(federalOtherTaxes + federalTaxCalculated);
+    const totalFederalTax = Math.round(federalOtherTaxes + federalTaxCalculated + federalChildTaxCredits);
     const totalStateTax = Math.round(stateOtherTaxes + stateTaxCalculated);
     const totalFederalQuarterTax = Math.round(totalFederalTax / annualizationFactor);
     const totalStateQuarterTax = Math.round(totalStateTax / annualizationFactor);
@@ -82,10 +88,19 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                             <td>{totalAdjustmentsAfterSETaxDed}</td>
                             <td>{totalAdjustmentsAfterSETaxDed}</td>
                         </tr>
+
+                        {taxOtherState.map((item) => 
+                        <tr key={item.id}>
+                            <th scope="row" className="table-description-item">{item.element}</th>
+                            <td className="table-na-section">{NA}</td>
+                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
+                        </tr>
+                        )}
+
                         <tr className="table-total-row">
                             <th scope="row">ADJUSTED GROSS INCOME</th>
-                            <td>{adjustedGrossIncome}</td>
-                            <td>{adjustedGrossIncome}</td>
+                            <td>{federalAdjustedGrossIncome}</td>
+                            <td>{stateAdjustedGrossIncome}</td>
                         </tr>
 
                          {taxItemizedDeductionElements.map((item) => 
@@ -116,19 +131,12 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                             <td className="table-na-section">{NA}</td>
                         </tr>
 
-                         {taxOtherState.map((item) => 
-                        <tr key={item.id}>
-                            <th scope="row" className="table-description-item">{item.element}</th>
+                        <tr >
+                            <th scope="row" className="table-description-item">STATE DEPENDENT EXEMPTIONS</th>
                             <td className="table-na-section">{NA}</td>
-                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
+                            <td>{stateDependentExemptions}</td>
                         </tr>
-                        )}
 
-                        <tr className="table-total-row">
-                            <th scope="row">TOTAL STATE OTHER</th>
-                            <td className="table-na-section">{NA}</td>
-                            <td>{totalStateOther}</td>
-                        </tr>
                         <tr className="table-total-row">
                             <th scope="row">TAXABLE INCOME</th>
                             <td>{federalTaxableIncome}</td>
@@ -145,6 +153,12 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                             <th scope="row">TOTAL OTHER TAX</th>
                             <td>{federalOtherTaxes}</td>
                             <td>{stateOtherTaxes}</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">FED CHILD TAX CREDITS</th>
+                            <td>{federalChildTaxCredits}</td>
+                            <td className="table-na-section">{NA}</td>
                         </tr>
 
                         <tr className="table-total-row">
