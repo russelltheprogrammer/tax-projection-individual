@@ -1,7 +1,7 @@
 Notes
 
 Other features ideas
-Want to add print form option? Yes
+Add Print Form Option
 Add commas to numbers
 Refactor NumbersOuputWithTax Component section with payments
 Add a safe harbor calculation section? Maybe in a different version of this application
@@ -11,6 +11,9 @@ Input section -change (...) to color red
 Addl Medicare taxes not calculated in S/E Tax
 
 Double Check Tax Brackets in constants, aka review
+
+Itemized vs standard calc
+calc tax
 
 Items that change per year
 -S/E Tax rate
