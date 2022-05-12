@@ -21,15 +21,16 @@ const taxAssumptionsElements = [
     ]},
     { id: 3, element: "DEPENDENTS", 
     array: [
-        { id: 0, arrayValue: 1 },
-        { id: 1, arrayValue: 2 },
-        { id: 2, arrayValue: 3 },
-        { id: 3, arrayValue: 4 },
-        { id: 4, arrayValue: 5 },
-        { id: 5, arrayValue: 6 },
-        { id: 6, arrayValue: 7 },
-        { id: 7, arrayValue: 8 },
-        { id: 8, arrayValue: 9 }
+        { id: 0, arrayValue: 0 },
+        { id: 1, arrayValue: 1 },
+        { id: 2, arrayValue: 2 },
+        { id: 3, arrayValue: 3 },
+        { id: 4, arrayValue: 4 },
+        { id: 5, arrayValue: 5 },
+        { id: 6, arrayValue: 6 },
+        { id: 7, arrayValue: 7 },
+        { id: 8, arrayValue: 8 },
+        { id: 9, arrayValue: 9 }
     ]},
     { id: 4, element: "STATE RESIDENCY", 
     array: [
