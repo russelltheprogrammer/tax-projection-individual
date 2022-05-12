@@ -15,7 +15,7 @@ const dispatch = useDispatch();
 const [ quarterState, setQuarterState ] = useState("1");
 const [ filingStatusState, setFilingStatusState ] = useState("SINGLE");
 const [ standardState, setStandardState ] = useState("STANDARD");
-const [ dependentsState, setDependentsState ] = useState("1");
+const [ dependentsState, setDependentsState ] = useState("0");
 const [ residencyState, setResidencyState ] = useState("NONE");
 
 const handleSubmit = () => {
