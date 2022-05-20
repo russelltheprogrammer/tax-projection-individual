@@ -160,7 +160,7 @@ const federalSingleTaxBrackets = [
     { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 1028, taxableIncomeBracketFloor: 10276, taxableIncomeBracketCeiling: 41775 },
     { id: 2, bracket: "22%", rate: .22, totalTaxBelowBracket: 4808, taxableIncomeBracketFloor: 41776, taxableIncomeBracketCeiling: 89075 },
     { id: 3, bracket: "24%", rate: .24, totalTaxBelowBracket: 15214, taxableIncomeBracketFloor: 89076, taxableIncomeBracketCeiling: 170050 },
-    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 34648, taxableIncomeBracketFloor: 170051, taxableIncomeBracketCeiling: 2215950 },
+    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 34648, taxableIncomeBracketFloor: 170051, taxableIncomeBracketCeiling: 215950 },
     { id: 5, bracket: "35%", rate: .35, totalTaxBelowBracket: 49336, taxableIncomeBracketFloor: 215951, taxableIncomeBracketCeiling: 539900 },
     { id: 6, bracket: "37%", rate: .37, totalTaxBelowBracket: 162718, taxableIncomeBracketFloor: 539901, taxableIncomeBracketCeiling: null }
 ];
@@ -276,17 +276,17 @@ const newYorkCityHOHTaxBrackets = [
 ];
 
 const federalStandardDeduction = [
-    { id: 0, standardDeduction: 12950, filingStatus: "SINGLE" },
-    { id: 1, standardDeduction: 12950, filingStatus: "MFS" },
-    { id: 2, standardDeduction: 25900, filingStatus: "MFJ" },
-    { id: 3, standardDeduction: 19400, filingStatus: "HOH" }
+    { id: 0, standardDeduction: -12950, filingStatus: "SINGLE" },
+    { id: 1, standardDeduction: -12950, filingStatus: "MFS" },
+    { id: 2, standardDeduction: -25900, filingStatus: "MFJ" },
+    { id: 3, standardDeduction: -19400, filingStatus: "HOH" }
 ];
 
 const newYorkStandardDeduction = [
-    { id: 0, standardDeduction: 8000, filingStatus: "SINGLE" },
-    { id: 1, standardDeduction: 8000, filingStatus: "MFS" },
-    { id: 2, standardDeduction: 16050, filingStatus: "MFJ" },
-    { id: 3, standardDeduction: 11200, filingStatus: "HOH" }
+    { id: 0, standardDeduction: -8000, filingStatus: "SINGLE" },
+    { id: 1, standardDeduction: -8000, filingStatus: "MFS" },
+    { id: 2, standardDeduction: -16050, filingStatus: "MFJ" },
+    { id: 3, standardDeduction: -11200, filingStatus: "HOH" }
 ];
 
 
