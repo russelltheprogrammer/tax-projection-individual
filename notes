@@ -1,14 +1,25 @@
 Notes
 
 
-Addl Medicare taxes not calculated in S/E Tax
+Things To Do
 
-Double Check Tax Brackets in constants, aka review
+High Priority
 
-Itemized vs standard calc
-calc tax
+Calculate correct itemized deductions, need to add function
+Calc tax, add function, don't forget to incorporate long term cap gains, QDs lower tax rate
+Addl Medicare taxes not calculated in S/E Tax, will I incorporate?
 
-Items that change per year
+Low Priority
+
+Refactor NumbersOuputWithTax Component section with payments
+Organize components and functions into folders
+
+
+More features? See notes outside of github.
+
+
+
+Items that change per year and need to be updated in the constants
 -S/E Tax rate
 -Tax Brackets
 -Federal & NY Standard Deduction
