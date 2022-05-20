@@ -44,9 +44,11 @@ const taxAssumptionsElements = [
 const numbersInputInitialState = {
     wages: "0",
     interest: "0",
-    dividends: "0",
+    ordinaryDividends: "0",
+    qualifiedDividends: "0",
     retirementIncome: "0",
-    capitalIncome: "0",
+    shortCapitalIncome: "0",
+    longCapitalIncome: "0",
     businessIncome: "0",
     otherIncome: "0",
     hsa: "0",
@@ -88,11 +90,13 @@ const paymentsInputInitialState = {
 const taxIncomeElements = [
     { id: 0, element: "WAGES (W-2)", hardValue: "wages" },
     { id: 1, element: "INTEREST", hardValue: "interest" },
-    { id: 2, element: "DIVIDENDS", hardValue: "dividends"  },
-    { id: 3, element: "RETIREMENT INCOME", hardValue: "retirementIncome" },
-    { id: 4, element: "CAPITAL GAINS/(LOSSES)", hardValue: "capitalIncome"},
-    { id: 5, element: "BUSINESS INCOME (SCHEDULE C)", hardValue: "businessIncome"},
-    { id: 6, element: "OTHER INCOME", hardValue: "otherIncome"}
+    { id: 2, element: "ORDINARY DIVIDENDS", hardValue: "ordinaryDividends"  },
+    { id: 3, element: "QUALIFIED DIVIDENDS", hardValue: "qualifiedDividends" },
+    { id: 4, element: "RETIREMENT INCOME", hardValue: "retirementIncome" },
+    { id: 5, element: "SHORT-TERM CAPITAL GAINS/(LOSSES)", hardValue: "shortCapitalIncome"},
+    { id: 6, element: "LONG-TERM CAPITAL GAINS/(LOSSES)", hardValue: "longCapitalIncome"},
+    { id: 7, element: "BUSINESS INCOME (SCHEDULE C)", hardValue: "businessIncome"},
+    { id: 8, element: "OTHER INCOME", hardValue: "otherIncome"}
 ];
 
 
@@ -271,9 +275,23 @@ const newYorkCityHOHTaxBrackets = [
     { id: 3, bracket: "3.876%", rate: .03876, totalTaxBelowBracket: 2176, taxableIncomeBracketFloor: 60001, taxableIncomeBracketCeiling: null }
 ];
 
+const federalStandardDeduction = [
+    { id: 0, standardDeduction: 12950, filingStatus: "SINGLE" },
+    { id: 1, standardDeduction: 12950, filingStatus: "MFS" },
+    { id: 2, standardDeduction: 25900, filingStatus: "MFJ" },
+    { id: 3, standardDeduction: 19400, filingStatus: "HOH" }
+];
+
+const newYorkStandardDeduction = [
+    { id: 0, standardDeduction: 8000, filingStatus: "SINGLE" },
+    { id: 1, standardDeduction: 8000, filingStatus: "MFS" },
+    { id: 2, standardDeduction: 16050, filingStatus: "MFJ" },
+    { id: 3, standardDeduction: 11200, filingStatus: "HOH" }
+];
+
 
 export { numbersInputInitialState, paymentsInputInitialState, taxAssumptionsElements, 
     taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, 
     paymentsFederal, paymentsState, otherTaxes, maxSETaxThreshold, federalSingleTaxBrackets, federalMFJTaxBrackets, federalMFSTaxBrackets, federalHOHTaxBrackets,
     newYorkStateSingleTaxBrackets, newYorkStateMFJTaxBrackets, newYorkStateMFSTaxBrackets, newYorkStateHOHTaxBrackets, newYorkCitySingleTaxBrackets, newYorkCityMFJTaxBrackets,
-    newYorkCityMFSTaxBrackets, newYorkCityHOHTaxBrackets };
+    newYorkCityMFSTaxBrackets, newYorkCityHOHTaxBrackets, federalStandardDeduction, newYorkStandardDeduction };
