@@ -3,6 +3,9 @@ import annualizationFactorCalcFunction from "./annualizationFactorCalcFunction";
 import annualizeDataFunction from "./annualizeDataFunction";
 import childTaxCreditFunction from "./childTaxCreditFunction";
 import seTaxFunction from "./seTaxFunction";
+import standardFunction from "./standardFunction";
+import StandardOutput from "./StandardOutput";
+import ItemizedOutput from "./ItemizedOutput";
 import { useSelector } from "react-redux";
 
 
@@ -13,6 +16,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
     const quarterFromStore = useSelector(store => store.quarter);
     const dependentsFromStore = useSelector(store => store.dependents);
     const filingStatusFromStore = useSelector(store => store.filingStatus);
+    const standardOrItemizedFromStore = useSelector(store => store.standard);
     const annualizationFactor = annualizationFactorCalcFunction(quarterFromStore);
     const taxInputDataAnnualized = annualizeDataFunction(numbersInputValuesState, annualizationFactor);
     const totalIncome = summationFunction(taxInputDataAnnualized, taxIncomeElements);
@@ -22,16 +26,19 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
     const totalAdjustmentsAfterSETaxDed = totalAdjustmentsBeforeSETaxDed + deductibleSETax;
     const totalStateOther = summationFunction(taxInputDataAnnualized, taxOtherState);
     const federalAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed;
-    const stateAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed + totalStateOther;
-    const totalItemized = summationFunction(taxInputDataAnnualized, taxItemizedDeductionElements); // change this?
-    const federalStandard = 0;
-    const stateStandard = 0;
-    const federalItemizedYesOrNo = 0;
-    const stateItemizedYesOrNo = 0;
+    const stateAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed + totalStateOther;  
+    const totalFederalItemized = summationFunction(taxInputDataAnnualized, taxItemizedDeductionElements); // needs to be changed
+    const totalStateItemized = summationFunction(taxInputDataAnnualized, taxItemizedDeductionElements); // needs to be changed
+    const federalStandard = standardFunction("federal", filingStatusFromStore);
+    const stateStandard = standardFunction("newYork", filingStatusFromStore);
     const totalFederalOther = summationFunction(taxInputDataAnnualized, taxOtherFederal);
     const stateDependentExemptions = dependentsFromStore * -1000;
-    const federalTaxableIncome = federalAdjustedGrossIncome + totalItemized + totalFederalOther;
-    const stateTaxableIncome = parseInt(stateAdjustedGrossIncome + totalItemized + stateDependentExemptions);
+    const federalTaxableIncome = standardOrItemizedFromStore === "STANDARD" ? 
+            federalAdjustedGrossIncome + federalStandard + totalFederalOther :
+            federalAdjustedGrossIncome + totalFederalItemized + totalFederalOther;
+    const stateTaxableIncome = standardOrItemizedFromStore === "STANDARD" ?
+            parseInt(stateAdjustedGrossIncome + stateStandard + stateDependentExemptions) :
+            parseInt(stateAdjustedGrossIncome + totalStateItemized + stateDependentExemptions);
     const federalOtherTaxes = parseInt(taxInputDataAnnualized["otherFedTaxes"]);
     const stateOtherTaxes = taxInputDataAnnualized["otherStateTaxes"];
     const federalChildTaxCredits = childTaxCreditFunction(federalAdjustedGrossIncome, dependentsFromStore, filingStatusFromStore);
@@ -106,21 +113,16 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                             <td>{federalAdjustedGrossIncome}</td>
                             <td>{stateAdjustedGrossIncome}</td>
                         </tr>
-
-                         {taxItemizedDeductionElements.map((item) => 
-                        <tr key={item.id}>
-                            <th scope="row" className="table-description-item">{item.element}</th>
-                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
-                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
-                        </tr>
-                        )}
-
-                        <tr className="table-total-row">
-                            <th scope="row">TOTAL ITEMIZED</th>
-                            <td>{totalItemized}</td>
-                            <td>{totalItemized}</td>
-                        </tr>
-
+                </tbody>
+                            {standardOrItemizedFromStore === "STANDARD" ? 
+                            <StandardOutput federalStandard={federalStandard} stateStandard={stateStandard} /> : 
+                            <ItemizedOutput 
+                                taxItemizedDeductionElements={taxItemizedDeductionElements} 
+                                taxInputDataAnnualized={taxInputDataAnnualized}
+                                totalFederalItemized={totalFederalItemized}
+                                totalStateItemized={totalStateItemized} />
+                            }
+                <tbody style={{borderTop: "none" }}>
                          {taxOtherFederal.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
