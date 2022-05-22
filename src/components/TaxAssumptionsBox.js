@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeQuarter, changeFilingStatus, changeStandard, changeDependents, changeResidency } from "./redux/action-creators/actionsMaster";
-import { taxAssumptionsElements } from "./constants";
+import { changeQuarter, changeFilingStatus, changeStandard, changeDependents, changeResidency } from "../redux/action-creators/actionsMaster";
+import { taxAssumptionsElements } from "../constants";
 
 const TaxAssumptionsBox = () => {
 

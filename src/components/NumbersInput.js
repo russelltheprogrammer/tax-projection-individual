@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { numbersInputInitialState, paymentsInputInitialState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, paymentsFederal,
-    paymentsState, otherTaxes } from "./constants";
+    paymentsState, otherTaxes } from "../constants";
 import NumbersInputComponent from "./NumbersInputComponent";
 import NumbersOutputWithTax from "./NumbersOutputWithTax";
 import { useSelector, useDispatch } from "react-redux";
-import { changeNumbersInput, changePaymentsInput } from "./redux/action-creators/actionsMaster";
+import { changeNumbersInput, changePaymentsInput } from "../redux/action-creators/actionsMaster";
 
 
 const NumbersInput = () => {

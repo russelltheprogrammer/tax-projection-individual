@@ -1,4 +1,4 @@
-import { federalStandardDeduction, newYorkStandardDeduction } from "./constants"
+import { federalStandardDeduction, newYorkStandardDeduction } from "../constants"
 
 const standardFunction = (jurisdiction, filingStatus) => {
     let dependentData;

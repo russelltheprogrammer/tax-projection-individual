@@ -1,9 +1,9 @@
-import Header from './Header';
-import UserTitleBox from './UserTitleBox';
-import TaxAssumptionsBox from './TaxAssumptionsBox';
-import NumbersInput from './NumbersInput';
-import TaxNotes from './TaxNotes';
-import Footer from './Footer';
+import Header from './components/Header'
+import UserTitleBox from './components/UserTitleBox';
+import TaxAssumptionsBox from './components/TaxAssumptionsBox';
+import NumbersInput from './components/NumbersInput';
+import TaxNotes from './components/TaxNotes';
+import Footer from './components/Footer';
 
 
 function App() {
