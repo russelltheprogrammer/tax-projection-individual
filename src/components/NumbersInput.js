@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { numbersInputInitialState, paymentsInputInitialState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, paymentsFederal,
-    paymentsState, otherTaxes } from "../constants";
+import { numbersInputInitialState, paymentsInputInitialState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxStateItemizedDeductionElements, 
+    taxOtherFederal, taxOtherState, paymentsFederal, paymentsState, otherTaxes } from "../constants";
 import NumbersInputComponent from "./NumbersInputComponent";
 import NumbersOutputWithTax from "./NumbersOutputWithTax";
 import { useSelector, useDispatch } from "react-redux";
@@ -66,21 +66,22 @@ const NumbersInput = () => {
             <div id="numbers-input-box">
                 <header className="box-title">INPUT NUMBERS</header>
                 <h5 className="box-sub-title">All numbers should be input as year to date by quarter</h5>
-                <NumbersInputComponent elementData={taxIncomeElements} title={"INCOME"} color={"primary"} numbersInputValuesState={numbersInputValuesState} 
+                <NumbersInputComponent elementData={taxIncomeElements} elementData2={null} title={"INCOME"} color={"primary"} numbersInputValuesState={numbersInputValuesState} 
                 handleInputChange={handleNumbersInputChange} />
-                <NumbersInputComponent elementData={taxAdjustmentElements} title={"ADJUSTMENTS (SHOULD BE NEGATIVE NUMBERS)"} color={"danger"} 
+                <NumbersInputComponent elementData={taxAdjustmentElements} elementData2={null} title={"ADJUSTMENTS (SHOULD BE NEGATIVE NUMBERS)"} color={"danger"} 
                 numbersInputValuesState={numbersInputValuesState} handleInputChange={handleNumbersInputChange} />
-                <NumbersInputComponent elementData={taxItemizedDeductionElements} title={"ITEMIZED DEDUCTIONS (SHOULD BE NEGATIVE NUMBERS)"} color={"danger"} 
+                <NumbersInputComponent elementData={taxItemizedDeductionElements} elementData2={taxStateItemizedDeductionElements} 
+                title={"ITEMIZED DEDUCTIONS (SHOULD BE NEGATIVE NUMBERS) (SHOULD BE LIMITED NUMBERS)"} color={"danger"} 
                 numbersInputValuesState={numbersInputValuesState} handleInputChange={handleNumbersInputChange} />
-                <NumbersInputComponent elementData={taxOtherFederal} title={"FEDERAL OTHER"} color={"secondary"} numbersInputValuesState={numbersInputValuesState} 
+                <NumbersInputComponent elementData={taxOtherFederal} elementData2={null} title={"FEDERAL OTHER"} color={"secondary"} numbersInputValuesState={numbersInputValuesState} 
                 handleInputChange={handleNumbersInputChange} />
-                <NumbersInputComponent elementData={taxOtherState} title={"STATE OTHER"} color={"secondary"} numbersInputValuesState={numbersInputValuesState} 
+                <NumbersInputComponent elementData={taxOtherState} elementData2={null} title={"STATE OTHER"} color={"secondary"} numbersInputValuesState={numbersInputValuesState} 
                 handleInputChange={handleNumbersInputChange} />
-                <NumbersInputComponent elementData={otherTaxes} title={"OTHER TAXES"} color={"secondary"} numbersInputValuesState={numbersInputValuesState} 
+                <NumbersInputComponent elementData={otherTaxes} elementData2={null} title={"OTHER TAXES"} color={"secondary"} numbersInputValuesState={numbersInputValuesState} 
                 handleInputChange={handleNumbersInputChange} />
-                <NumbersInputComponent elementData={paymentsFederal} title={"FEDERAL TAX PAYMENTS"} color={"success"} numbersInputValuesState={paymentsInputValuesState} 
+                <NumbersInputComponent elementData={paymentsFederal} elementData2={null} title={"FEDERAL TAX PAYMENTS"} color={"success"} numbersInputValuesState={paymentsInputValuesState} 
                 handleInputChange={handlePaymentsInputChange} />
-                <NumbersInputComponent elementData={paymentsState} title={"STATE TAX PAYMENTS"} color={"success"} numbersInputValuesState={paymentsInputValuesState} 
+                <NumbersInputComponent elementData={paymentsState} elementData2={null} title={"STATE TAX PAYMENTS"} color={"success"} numbersInputValuesState={paymentsInputValuesState} 
                 handleInputChange={handlePaymentsInputChange} />
                 
                 <button id="numbers-input-submit-button" className="submit-button" onClick={handleSubmit} type="submit">SUBMIT</button><br/>
@@ -92,6 +93,7 @@ const NumbersInput = () => {
                     taxIncomeElements={taxIncomeElements}
                     taxAdjustmentElements={taxAdjustmentElements}
                     taxItemizedDeductionElements={taxItemizedDeductionElements}
+                    taxStateItemizedDeductionElements={taxStateItemizedDeductionElements}
                     taxOtherFederal={taxOtherFederal}
                     taxOtherState={taxOtherState}
                     paymentsFederal={paymentsFederal}
