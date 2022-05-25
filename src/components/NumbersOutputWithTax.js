@@ -7,11 +7,12 @@ import standardFunction from "../functions/standardFunction";
 import StandardOutput from "./StandardOutput";
 import ItemizedOutput from "./ItemizedOutput";
 import federalItemizedCalcFunction from "../functions/federalItemizedCalcFunction";
+import newYorkItemizedCalcFunction from "../functions/newYorkItemizedCalcFunction";
 import { useSelector } from "react-redux";
 
 
-const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, 
-    taxOtherState, paymentsFederal, paymentsState }) => {
+const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxStateItemizedDeductionElements,
+     taxOtherFederal, taxOtherState, paymentsFederal, paymentsState }) => {
 
    
     const quarterFromStore = useSelector(store => store.quarter);
@@ -28,8 +29,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
     const totalStateOther = summationFunction(taxInputDataAnnualized, taxOtherState);
     const federalAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed;
     const stateAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed + totalStateOther;  
-    const totalFederalItemized = federalItemizedCalcFunction(federalAdjustedGrossIncome, numbersInputValuesState)
-    const totalStateItemized = summationFunction(taxInputDataAnnualized, taxItemizedDeductionElements); // needs to be changed
+    const totalFederalItemized = federalItemizedCalcFunction(federalAdjustedGrossIncome, taxInputDataAnnualized);
+    const totalStateItemized = newYorkItemizedCalcFunction(stateAdjustedGrossIncome, taxInputDataAnnualized);
     const federalStandard = standardFunction("federal", filingStatusFromStore);
     const stateStandard = standardFunction("newYork", filingStatusFromStore);
     const totalFederalOther = summationFunction(taxInputDataAnnualized, taxOtherFederal);
@@ -118,10 +119,12 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                             {standardOrItemizedFromStore === "STANDARD" ? 
                             <StandardOutput federalStandard={federalStandard} stateStandard={stateStandard} /> : 
                             <ItemizedOutput 
-                                taxItemizedDeductionElements={taxItemizedDeductionElements} 
+                                taxItemizedDeductionElements={taxItemizedDeductionElements}
+                                taxStateItemizedDeductionElements={taxStateItemizedDeductionElements} 
                                 taxInputDataAnnualized={taxInputDataAnnualized}
                                 totalFederalItemized={totalFederalItemized}
-                                totalStateItemized={totalStateItemized} />
+                                totalStateItemized={totalStateItemized}
+                                NA={NA} />
                             }
                 <tbody style={{borderTop: "none" }}>
                          {taxOtherFederal.map((item) => 
