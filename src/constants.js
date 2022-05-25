@@ -61,6 +61,7 @@ const numbersInputInitialState = {
     interestPaidItemized: "0",
     charity: "0",
     otherItemized: "0",
+    stateSpecificItemized: "0",
     qbi: "0",
     otherFedDeductions: "0",
     otherFedTaxes: "0",
@@ -113,8 +114,12 @@ const taxItemizedDeductionElements = [
     { id: 1, element: "TAXES PAID", hardValue: "taxesPaidItemized" },
     { id: 2, element: "INTEREST PAID", hardValue: "interestPaidItemized" },
     { id: 3, element: "CHARITY", hardValue: "charity" },
-    { id: 4, element: "OTHER ITEMIZED DEDUCTIONS", hardValue: "otherItemized" },
+    { id: 4, element: "OTHER ITEMIZED DEDUCTIONS", hardValue: "otherItemized" }
 ];
+
+const taxStateItemizedDeductionElements = [
+    { id: 0, element: "STATE SPECIFIC ITEMIZED DEDUCTIONS", hardValue: "stateSpecificItemized"}
+]
 
 const taxOtherFederal = [
     { id: 0, element: "QUALIFIED BUSINESS INCOME DEDUCTION (NEGATIVE)", hardValue: "qbi" },
@@ -291,7 +296,7 @@ const newYorkStandardDeduction = [
 
 
 export { numbersInputInitialState, paymentsInputInitialState, taxAssumptionsElements, 
-    taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxOtherFederal, taxOtherState, 
+    taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxStateItemizedDeductionElements, taxOtherFederal, taxOtherState, 
     paymentsFederal, paymentsState, otherTaxes, maxSETaxThreshold, federalSingleTaxBrackets, federalMFJTaxBrackets, federalMFSTaxBrackets, federalHOHTaxBrackets,
     newYorkStateSingleTaxBrackets, newYorkStateMFJTaxBrackets, newYorkStateMFSTaxBrackets, newYorkStateHOHTaxBrackets, newYorkCitySingleTaxBrackets, newYorkCityMFJTaxBrackets,
     newYorkCityMFSTaxBrackets, newYorkCityHOHTaxBrackets, federalStandardDeduction, newYorkStandardDeduction };
