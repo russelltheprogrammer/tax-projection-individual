@@ -2,20 +2,21 @@ import { federalSingleTaxBrackets, federalMFJTaxBrackets, federalMFSTaxBrackets,
     newYorkStateMFJTaxBrackets, newYorkStateMFSTaxBrackets, newYorkStateHOHTaxBrackets, newYorkCitySingleTaxBrackets, newYorkCityMFJTaxBrackets,
     newYorkCityMFSTaxBrackets, newYorkCityHOHTaxBrackets }
     from "../constants";
+import taxBracketTaxFunction from "./taxBracketTaxFunction";
 
 const taxCalcFunction = (taxableIncome, filingStatus, residency) => {
    
     let taxBracket;
-    let parsedTaxableIncome = parseInt(taxableIncome);
+    let taxBracket2 = null;
     let expr = filingStatus + " & " + residency;
+    let calculatedTax = 0;
 
-    if(parsedTaxableIncome < 1){
-        return 0;
+    if(taxableIncome < 1){
+        return calculatedTax;
     }
     else if(residency === "NONE"){
-        return 0;
+        return calculatedTax;
     }
-
     else {
         switch(expr) {
             case "SINGLE & FEDERAL":
@@ -42,36 +43,36 @@ const taxCalcFunction = (taxableIncome, filingStatus, residency) => {
             case "HOH & NEW YORK":
                 taxBracket = newYorkStateHOHTaxBrackets;
                 break;
-            case "SINGLE & NEW YORK  CITY":
-                taxBracket = newYorkCitySingleTaxBrackets;
+            case "SINGLE & NEW YORK CITY":
+                taxBracket = newYorkStateSingleTaxBrackets;
+                taxBracket2 = newYorkCitySingleTaxBrackets;
                 break;
             case "MFJ & NEW YORK CITY":
-                taxBracket = newYorkCityMFJTaxBrackets;
+                taxBracket = newYorkStateMFJTaxBrackets;;
+                taxBracket2 = newYorkCityMFJTaxBrackets;
                 break;
             case "MFS & NEW YORK CITY":
-                taxBracket = newYorkCityMFSTaxBrackets;
+                taxBracket = newYorkStateMFSTaxBrackets;
+                taxBracket2 = newYorkCityMFSTaxBrackets;
                 break;
             case "HOH & NEW YORK CITY":
-                taxBracket = newYorkCityHOHTaxBrackets;
+                taxBracket = newYorkStateHOHTaxBrackets;
+                taxBracket2 = newYorkCityHOHTaxBrackets;
                 break;
             default:
                 return console.log("no state selected, there is an erorr in the taxCalcfunction");
         }
-    
-    for(let i = 0; i < taxBracket.length; i++){
-        if(parsedTaxableIncome <= taxBracket[i]["taxBracketCeiling"] && taxBracket[i]["taxBracketFloor"] === null){
-            return parseInt(parsedTaxableIncome * taxBracket[i]["rate"]);
-        }
-        else if(parsedTaxableIncome <= taxBracket[i]["taxBracketCeiling"] && parsedTaxableIncome >= taxBracket[i]["taxBracketFloor"]){
-            return parseInt(((parsedTaxableIncome - taxBracket[i]["taxBracketFloor"]) * taxBracket[i]["rate"]) + taxBracket[i]["totalTaxBelowBracket"]);
-        }
-        else if(parsedTaxableIncome >= taxBracket[i]["taxBracketFloor"] && taxBracket[i]["taxBracketCeiling"] === null){
-            return parseInt(((parsedTaxableIncome - taxBracket[i]["taxBracketFloor"]) * taxBracket[i]["rate"]) + taxBracket[i]["totalTaxBelowBracket"]);
-        }
-        else{
-            return console.log("there is an error in the taxCalcFunction");
-        }
-        }
+
+    calculatedTax += taxBracketTaxFunction(taxBracket, taxableIncome, calculatedTax);
+   
+    if(taxBracket2 === null){
+        return calculatedTax;
+    }
+    else if(taxBracket2 !== null){
+        calculatedTax += taxBracketTaxFunction(taxBracket2, taxableIncome, calculatedTax);
+        return calculatedTax;
+    }
+    return console.log("No tax calculated, there is an error in the the taxCalcFunction");
     }
 }
 
