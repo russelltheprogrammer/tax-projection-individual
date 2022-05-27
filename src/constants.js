@@ -1,4 +1,3 @@
-
 const taxAssumptionsElements = [
     { id: 0, element: "QUARTER", 
     array: [
@@ -100,7 +99,6 @@ const taxIncomeElements = [
     { id: 8, element: "OTHER INCOME", hardValue: "otherIncome"}
 ];
 
-
 const taxAdjustmentElements = [
     { id: 0, element: "HSA CONTRIBUTIONS", hardValue: "hsa" },
     { id: 1, element: "S/E INSURANCE", hardValue: "insurance" },
@@ -158,126 +156,127 @@ const otherTaxes = [
 ]
 
 // all numbers below this will change from year to year, currently constants are for 2022
+
 const maxSETaxThreshold = 147000;
 
 const federalSingleTaxBrackets = [
-    { id: 0, bracket: "10%", rate: .10, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 10275 },
-    { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 1028, taxableIncomeBracketFloor: 10276, taxableIncomeBracketCeiling: 41775 },
-    { id: 2, bracket: "22%", rate: .22, totalTaxBelowBracket: 4808, taxableIncomeBracketFloor: 41776, taxableIncomeBracketCeiling: 89075 },
-    { id: 3, bracket: "24%", rate: .24, totalTaxBelowBracket: 15214, taxableIncomeBracketFloor: 89076, taxableIncomeBracketCeiling: 170050 },
-    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 34648, taxableIncomeBracketFloor: 170051, taxableIncomeBracketCeiling: 215950 },
-    { id: 5, bracket: "35%", rate: .35, totalTaxBelowBracket: 49336, taxableIncomeBracketFloor: 215951, taxableIncomeBracketCeiling: 539900 },
-    { id: 6, bracket: "37%", rate: .37, totalTaxBelowBracket: 162718, taxableIncomeBracketFloor: 539901, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "10%", rate: .10, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 10275 },
+    { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 1028, taxBracketFloor: 10276, taxBracketCeiling: 41775 },
+    { id: 2, bracket: "22%", rate: .22, totalTaxBelowBracket: 4808, taxBracketFloor: 41776, taxBracketCeiling: 89075 },
+    { id: 3, bracket: "24%", rate: .24, totalTaxBelowBracket: 15214, taxBracketFloor: 89076, taxBracketCeiling: 170050 },
+    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 34648, taxBracketFloor: 170051, taxBracketCeiling: 215950 },
+    { id: 5, bracket: "35%", rate: .35, totalTaxBelowBracket: 49336, taxBracketFloor: 215951, taxBracketCeiling: 539900 },
+    { id: 6, bracket: "37%", rate: .37, totalTaxBelowBracket: 162718, taxBracketFloor: 539901, taxBracketCeiling: null }
 ];
 
 const federalMFJTaxBrackets = [
-    { id: 0, bracket: "10%", rate: .10, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 20550 },
-    { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 2055, taxableIncomeBracketFloor: 20551, taxableIncomeBracketCeiling: 83550 },
-    { id: 2, bracket: "22%", rate: .22, totalTaxBelowBracket: 9615, taxableIncomeBracketFloor: 83551, taxableIncomeBracketCeiling: 178150 },
-    { id: 3, bracket: "24%", rate: .24, totalTaxBelowBracket: 30427, taxableIncomeBracketFloor: 178151, taxableIncomeBracketCeiling: 340100 },
-    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 69295, taxableIncomeBracketFloor: 340101, taxableIncomeBracketCeiling: 431900 },
-    { id: 5, bracket: "35%", rate: .35, totalTaxBelowBracket: 98671, taxableIncomeBracketFloor: 431901, taxableIncomeBracketCeiling: 647850 },
-    { id: 6, bracket: "37%", rate: .37, totalTaxBelowBracket: 174254, taxableIncomeBracketFloor: 647851, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "10%", rate: .10, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 20550 },
+    { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 2055, taxBracketFloor: 20551, taxBracketCeiling: 83550 },
+    { id: 2, bracket: "22%", rate: .22, totalTaxBelowBracket: 9615, taxBracketFloor: 83551, taxBracketCeiling: 178150 },
+    { id: 3, bracket: "24%", rate: .24, totalTaxBelowBracket: 30427, taxBracketFloor: 178151, taxBracketCeiling: 340100 },
+    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 69295, taxBracketFloor: 340101, taxBracketCeiling: 431900 },
+    { id: 5, bracket: "35%", rate: .35, totalTaxBelowBracket: 98671, taxBracketFloor: 431901, taxBracketCeiling: 647850 },
+    { id: 6, bracket: "37%", rate: .37, totalTaxBelowBracket: 174254, taxBracketFloor: 647851, taxBracketCeiling: null }
 ];
 
 const federalMFSTaxBrackets = [
-    { id: 0, bracket: "10%", rate: .10, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 10275 },
-    { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 1028, taxableIncomeBracketFloor: 10276, taxableIncomeBracketCeiling: 41775 },
-    { id: 2, bracket: "22%", rate: .22, totalTaxBelowBracket: 4808, taxableIncomeBracketFloor: 41776, taxableIncomeBracketCeiling: 89075 },
-    { id: 3, bracket: "24%", rate: .24, totalTaxBelowBracket: 15214, taxableIncomeBracketFloor: 89076, taxableIncomeBracketCeiling: 170050 },
-    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 34648, taxableIncomeBracketFloor: 170051, taxableIncomeBracketCeiling: 215950 },
-    { id: 5, bracket: "35%", rate: .35, totalTaxBelowBracket: 49336, taxableIncomeBracketFloor: 215951, taxableIncomeBracketCeiling: 323925 },
-    { id: 6, bracket: "37%", rate: .37, totalTaxBelowBracket: 87127, taxableIncomeBracketFloor: 323926, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "10%", rate: .10, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 10275 },
+    { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 1028, taxBracketFloor: 10276, taxBracketCeiling: 41775 },
+    { id: 2, bracket: "22%", rate: .22, totalTaxBelowBracket: 4808, taxBracketFloor: 41776, taxBracketCeiling: 89075 },
+    { id: 3, bracket: "24%", rate: .24, totalTaxBelowBracket: 15214, taxBracketFloor: 89076, taxBracketCeiling: 170050 },
+    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 34648, taxBracketFloor: 170051, taxBracketCeiling: 215950 },
+    { id: 5, bracket: "35%", rate: .35, totalTaxBelowBracket: 49336, taxBracketFloor: 215951, taxBracketCeiling: 323925 },
+    { id: 6, bracket: "37%", rate: .37, totalTaxBelowBracket: 87127, taxBracketFloor: 323926, taxBracketCeiling: null }
 ];
 
 const federalHOHTaxBrackets = [
-    { id: 0, bracket: "10%", rate: .10, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 14650 },
-    { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 1465, taxableIncomeBracketFloor: 14651, taxableIncomeBracketCeiling: 55900 },
-    { id: 2, bracket: "22%", rate: .22, totalTaxBelowBracket: 6415, taxableIncomeBracketFloor: 55901, taxableIncomeBracketCeiling: 89050 },
-    { id: 3, bracket: "24%", rate: .24, totalTaxBelowBracket: 13708, taxableIncomeBracketFloor: 89051, taxableIncomeBracketCeiling: 170050 },
-    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 33148, taxableIncomeBracketFloor: 170051, taxableIncomeBracketCeiling: 215950 },
-    { id: 5, bracket: "35%", rate: .35, totalTaxBelowBracket: 47836, taxableIncomeBracketFloor: 215951, taxableIncomeBracketCeiling: 539900 },
-    { id: 6, bracket: "37%", rate: .37, totalTaxBelowBracket: 161219, taxableIncomeBracketFloor: 539901, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "10%", rate: .10, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 14650 },
+    { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 1465, taxBracketFloor: 14651, taxBracketCeiling: 55900 },
+    { id: 2, bracket: "22%", rate: .22, totalTaxBelowBracket: 6415, taxBracketFloor: 55901, taxBracketCeiling: 89050 },
+    { id: 3, bracket: "24%", rate: .24, totalTaxBelowBracket: 13708, taxBracketFloor: 89051, taxBracketCeiling: 170050 },
+    { id: 4, bracket: "32%", rate: .32, totalTaxBelowBracket: 33148, taxBracketFloor: 170051, taxBracketCeiling: 215950 },
+    { id: 5, bracket: "35%", rate: .35, totalTaxBelowBracket: 47836, taxBracketFloor: 215951, taxBracketCeiling: 539900 },
+    { id: 6, bracket: "37%", rate: .37, totalTaxBelowBracket: 161219, taxBracketFloor: 539901, taxBracketCeiling: null }
 ];
 
 const newYorkStateSingleTaxBrackets = [
-    { id: 0, bracket: "4%", rate: .04, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 8500 },
-    { id: 1, bracket: "4.5%", rate: .045, totalTaxBelowBracket: 340, taxableIncomeBracketFloor: 8501, taxableIncomeBracketCeiling: 11700 },
-    { id: 2, bracket: "5.25%", rate: .0525, totalTaxBelowBracket: 484, taxableIncomeBracketFloor: 11701, taxableIncomeBracketCeiling: 13900 },
-    { id: 3, bracket: "5.9%", rate: .059, totalTaxBelowBracket: 600, taxableIncomeBracketFloor: 13901, taxableIncomeBracketCeiling: 21400 },
-    { id: 4, bracket: "5.97%", rate: .0597, totalTaxBelowBracket: 1042, taxableIncomeBracketFloor: 21401, taxableIncomeBracketCeiling: 80650 },
-    { id: 5, bracket: "6.33%", rate: .0633, totalTaxBelowBracket: 4579, taxableIncomeBracketFloor: 80651, taxableIncomeBracketCeiling: 215400 },
-    { id: 6, bracket: "6.85%", rate: .0685, totalTaxBelowBracket: 13109, taxableIncomeBracketFloor: 215401, taxableIncomeBracketCeiling: 1077550 },
-    { id: 7, bracket: "9.65%", rate: .0965, totalTaxBelowBracket: 72166, taxableIncomeBracketFloor: 1077550, taxableIncomeBracketCeiling: 5000000 },
-    { id: 8, bracket: "10.3%", rate: .103, totalTaxBelowBracket: 450683, taxableIncomeBracketFloor: 5000001, taxableIncomeBracketCeiling: 25000000 },
-    { id: 9, bracket: "10.9%", rate: .109, totalTaxBelowBracket: 2510683, taxableIncomeBracketFloor: 25000001, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "4%", rate: .04, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 8500 },
+    { id: 1, bracket: "4.5%", rate: .045, totalTaxBelowBracket: 340, taxBracketFloor: 8501, taxBracketCeiling: 11700 },
+    { id: 2, bracket: "5.25%", rate: .0525, totalTaxBelowBracket: 484, taxBracketFloor: 11701, taxBracketCeiling: 13900 },
+    { id: 3, bracket: "5.9%", rate: .059, totalTaxBelowBracket: 600, taxBracketFloor: 13901, taxBracketCeiling: 21400 },
+    { id: 4, bracket: "5.97%", rate: .0597, totalTaxBelowBracket: 1042, taxBracketFloor: 21401, taxBracketCeiling: 80650 },
+    { id: 5, bracket: "6.33%", rate: .0633, totalTaxBelowBracket: 4579, taxBracketFloor: 80651, taxBracketCeiling: 215400 },
+    { id: 6, bracket: "6.85%", rate: .0685, totalTaxBelowBracket: 13109, taxBracketFloor: 215401, taxBracketCeiling: 1077550 },
+    { id: 7, bracket: "9.65%", rate: .0965, totalTaxBelowBracket: 72166, taxBracketFloor: 1077550, taxBracketCeiling: 5000000 },
+    { id: 8, bracket: "10.3%", rate: .103, totalTaxBelowBracket: 450683, taxBracketFloor: 5000001, taxBracketCeiling: 25000000 },
+    { id: 9, bracket: "10.9%", rate: .109, totalTaxBelowBracket: 2510683, taxBracketFloor: 25000001, taxBracketCeiling: null }
 ];
 
 const newYorkStateMFJTaxBrackets = [
-    { id: 0, bracket: "4%", rate: .04, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 17150 },
-    { id: 1, bracket: "4.5%", rate: .045, totalTaxBelowBracket: 686, taxableIncomeBracketFloor: 17151, taxableIncomeBracketCeiling: 23600 },
-    { id: 2, bracket: "5.25%", rate: .0525, totalTaxBelowBracket: 976, taxableIncomeBracketFloor: 23601, taxableIncomeBracketCeiling: 27900 },
-    { id: 3, bracket: "5.9%", rate: .059, totalTaxBelowBracket: 1202, taxableIncomeBracketFloor: 27901, taxableIncomeBracketCeiling: 43000 },
-    { id: 4, bracket: "5.97%", rate: .0597, totalTaxBelowBracket: 2093, taxableIncomeBracketFloor: 43001, taxableIncomeBracketCeiling: 161550 },
-    { id: 5, bracket: "6.33%", rate: .0633, totalTaxBelowBracket: 9170, taxableIncomeBracketFloor: 161551, taxableIncomeBracketCeiling: 323200 },
-    { id: 6, bracket: "6.85%", rate: .0685, totalTaxBelowBracket: 19403, taxableIncomeBracketFloor: 323201, taxableIncomeBracketCeiling: 2155350 },
-    { id: 7, bracket: "9.65%", rate: .0965, totalTaxBelowBracket: 144905, taxableIncomeBracketFloor: 2155351, taxableIncomeBracketCeiling: 5000000 },
-    { id: 8, bracket: "10.3%", rate: .103, totalTaxBelowBracket: 419414, taxableIncomeBracketFloor: 5000001, taxableIncomeBracketCeiling: 25000000 },
-    { id: 9, bracket: "10.9%", rate: .109, totalTaxBelowBracket: 2479414, taxableIncomeBracketFloor: 25000001, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "4%", rate: .04, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 17150 },
+    { id: 1, bracket: "4.5%", rate: .045, totalTaxBelowBracket: 686, taxBracketFloor: 17151, taxBracketCeiling: 23600 },
+    { id: 2, bracket: "5.25%", rate: .0525, totalTaxBelowBracket: 976, taxBracketFloor: 23601, taxBracketCeiling: 27900 },
+    { id: 3, bracket: "5.9%", rate: .059, totalTaxBelowBracket: 1202, taxBracketFloor: 27901, taxBracketCeiling: 43000 },
+    { id: 4, bracket: "5.97%", rate: .0597, totalTaxBelowBracket: 2093, taxBracketFloor: 43001, taxBracketCeiling: 161550 },
+    { id: 5, bracket: "6.33%", rate: .0633, totalTaxBelowBracket: 9170, taxBracketFloor: 161551, taxBracketCeiling: 323200 },
+    { id: 6, bracket: "6.85%", rate: .0685, totalTaxBelowBracket: 19403, taxBracketFloor: 323201, taxBracketCeiling: 2155350 },
+    { id: 7, bracket: "9.65%", rate: .0965, totalTaxBelowBracket: 144905, taxBracketFloor: 2155351, taxBracketCeiling: 5000000 },
+    { id: 8, bracket: "10.3%", rate: .103, totalTaxBelowBracket: 419414, taxBracketFloor: 5000001, taxBracketCeiling: 25000000 },
+    { id: 9, bracket: "10.9%", rate: .109, totalTaxBelowBracket: 2479414, taxBracketFloor: 25000001, taxBracketCeiling: null }
 ];
 
 const newYorkStateMFSTaxBrackets = [
-    { id: 0, bracket: "4%", rate: .04, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 8500 },
-    { id: 1, bracket: "4.5%", rate: .045, totalTaxBelowBracket: 340, taxableIncomeBracketFloor: 8501, taxableIncomeBracketCeiling: 11700 },
-    { id: 2, bracket: "5.25%", rate: .0525, totalTaxBelowBracket: 484, taxableIncomeBracketFloor: 11701, taxableIncomeBracketCeiling: 13900 },
-    { id: 3, bracket: "5.9%", rate: .059, totalTaxBelowBracket: 600, taxableIncomeBracketFloor: 13901, taxableIncomeBracketCeiling: 21400 },
-    { id: 4, bracket: "5.97%", rate: .0597, totalTaxBelowBracket: 1042, taxableIncomeBracketFloor: 21401, taxableIncomeBracketCeiling: 80650 },
-    { id: 5, bracket: "6.33%", rate: .0633, totalTaxBelowBracket: 4579, taxableIncomeBracketFloor: 80651, taxableIncomeBracketCeiling: 215400 },
-    { id: 6, bracket: "6.85%", rate: .0685, totalTaxBelowBracket: 13109, taxableIncomeBracketFloor: 215401, taxableIncomeBracketCeiling: 1077550 },
-    { id: 7, bracket: "9.65%", rate: .0965, totalTaxBelowBracket: 72166, taxableIncomeBracketFloor: 1077550, taxableIncomeBracketCeiling: 5000000 },
-    { id: 8, bracket: "10.3%", rate: .103, totalTaxBelowBracket: 450683, taxableIncomeBracketFloor: 5000001, taxableIncomeBracketCeiling: 25000000 },
-    { id: 9, bracket: "10.9%", rate: .109, totalTaxBelowBracket: 2510683, taxableIncomeBracketFloor: 25000001, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "4%", rate: .04, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 8500 },
+    { id: 1, bracket: "4.5%", rate: .045, totalTaxBelowBracket: 340, taxBracketFloor: 8501, taxBracketCeiling: 11700 },
+    { id: 2, bracket: "5.25%", rate: .0525, totalTaxBelowBracket: 484, taxBracketFloor: 11701, taxBracketCeiling: 13900 },
+    { id: 3, bracket: "5.9%", rate: .059, totalTaxBelowBracket: 600, taxBracketFloor: 13901, taxBracketCeiling: 21400 },
+    { id: 4, bracket: "5.97%", rate: .0597, totalTaxBelowBracket: 1042, taxBracketFloor: 21401, taxBracketCeiling: 80650 },
+    { id: 5, bracket: "6.33%", rate: .0633, totalTaxBelowBracket: 4579, taxBracketFloor: 80651, taxBracketCeiling: 215400 },
+    { id: 6, bracket: "6.85%", rate: .0685, totalTaxBelowBracket: 13109, taxBracketFloor: 215401, taxBracketCeiling: 1077550 },
+    { id: 7, bracket: "9.65%", rate: .0965, totalTaxBelowBracket: 72166, taxBracketFloor: 1077550, taxBracketCeiling: 5000000 },
+    { id: 8, bracket: "10.3%", rate: .103, totalTaxBelowBracket: 450683, taxBracketFloor: 5000001, taxBracketCeiling: 25000000 },
+    { id: 9, bracket: "10.9%", rate: .109, totalTaxBelowBracket: 2510683, taxBracketFloor: 25000001, taxBracketCeiling: null }
 ];
 
 const newYorkStateHOHTaxBrackets = [
-    { id: 0, bracket: "4%", rate: .04, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 12800 },
-    { id: 1, bracket: "4.5%", rate: .045, totalTaxBelowBracket: 512, taxableIncomeBracketFloor: 12801, taxableIncomeBracketCeiling: 17650 },
-    { id: 2, bracket: "5.25%", rate: .0525, totalTaxBelowBracket: 730, taxableIncomeBracketFloor: 17651, taxableIncomeBracketCeiling: 20900 },
-    { id: 3, bracket: "5.9%", rate: .059, totalTaxBelowBracket: 901, taxableIncomeBracketFloor: 20901, taxableIncomeBracketCeiling: 32200 },
-    { id: 4, bracket: "5.97%", rate: .0597, totalTaxBelowBracket: 1568, taxableIncomeBracketFloor: 32201, taxableIncomeBracketCeiling: 107650 },
-    { id: 5, bracket: "6.33%", rate: .0633, totalTaxBelowBracket: 6072, taxableIncomeBracketFloor: 107651, taxableIncomeBracketCeiling: 269300 },
-    { id: 6, bracket: "6.85%", rate: .0685, totalTaxBelowBracket: 16304, taxableIncomeBracketFloor: 269301, taxableIncomeBracketCeiling: 1616450 },
-    { id: 7, bracket: "9.65%", rate: .0965, totalTaxBelowBracket: 108584, taxableIncomeBracketFloor: 1616451, taxableIncomeBracketCeiling: 5000000 },
-    { id: 8, bracket: "10.3%", rate: .103, totalTaxBelowBracket: 435097, taxableIncomeBracketFloor: 5000001, taxableIncomeBracketCeiling: 25000000 },
-    { id: 9, bracket: "10.9%", rate: .109, totalTaxBelowBracket: 2495097, taxableIncomeBracketFloor: 25000001, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "4%", rate: .04, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 12800 },
+    { id: 1, bracket: "4.5%", rate: .045, totalTaxBelowBracket: 512, taxBracketFloor: 12801, taxBracketCeiling: 17650 },
+    { id: 2, bracket: "5.25%", rate: .0525, totalTaxBelowBracket: 730, taxBracketFloor: 17651, taxBracketCeiling: 20900 },
+    { id: 3, bracket: "5.9%", rate: .059, totalTaxBelowBracket: 901, taxBracketFloor: 20901, taxBracketCeiling: 32200 },
+    { id: 4, bracket: "5.97%", rate: .0597, totalTaxBelowBracket: 1568, taxBracketFloor: 32201, taxBracketCeiling: 107650 },
+    { id: 5, bracket: "6.33%", rate: .0633, totalTaxBelowBracket: 6072, taxBracketFloor: 107651, taxBracketCeiling: 269300 },
+    { id: 6, bracket: "6.85%", rate: .0685, totalTaxBelowBracket: 16304, taxBracketFloor: 269301, taxBracketCeiling: 1616450 },
+    { id: 7, bracket: "9.65%", rate: .0965, totalTaxBelowBracket: 108584, taxBracketFloor: 1616451, taxBracketCeiling: 5000000 },
+    { id: 8, bracket: "10.3%", rate: .103, totalTaxBelowBracket: 435097, taxBracketFloor: 5000001, taxBracketCeiling: 25000000 },
+    { id: 9, bracket: "10.9%", rate: .109, totalTaxBelowBracket: 2495097, taxBracketFloor: 25000001, taxBracketCeiling: null }
 ];
 
 const newYorkCitySingleTaxBrackets = [
-    { id: 0, bracket: "3.078%", rate: .03078, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 12000 },
-    { id: 1, bracket: "3.762%", rate: .03762, totalTaxBelowBracket: 369, taxableIncomeBracketFloor: 12001, taxableIncomeBracketCeiling: 25000 },
-    { id: 2, bracket: "3.819%", rate: .03819, totalTaxBelowBracket: 858, taxableIncomeBracketFloor: 25001, taxableIncomeBracketCeiling: 50000 },
-    { id: 3, bracket: "3.876%", rate: .03876, totalTaxBelowBracket: 1813, taxableIncomeBracketFloor: 50001, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "3.078%", rate: .03078, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 12000 },
+    { id: 1, bracket: "3.762%", rate: .03762, totalTaxBelowBracket: 369, taxBracketFloor: 12001, taxBracketCeiling: 25000 },
+    { id: 2, bracket: "3.819%", rate: .03819, totalTaxBelowBracket: 858, taxBracketFloor: 25001, taxBracketCeiling: 50000 },
+    { id: 3, bracket: "3.876%", rate: .03876, totalTaxBelowBracket: 1813, taxBracketFloor: 50001, taxBracketCeiling: null }
 ];
 
 const newYorkCityMFJTaxBrackets = [
-    { id: 0, bracket: "3.078%", rate: .03078, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 21600 },
-    { id: 1, bracket: "3.762%", rate: .03762, totalTaxBelowBracket: 665, taxableIncomeBracketFloor: 21601, taxableIncomeBracketCeiling: 45000 },
-    { id: 2, bracket: "3.819%", rate: .03819, totalTaxBelowBracket: 1545, taxableIncomeBracketFloor: 45001, taxableIncomeBracketCeiling: 90000 },
-    { id: 3, bracket: "3.876%", rate: .03876, totalTaxBelowBracket: 3264, taxableIncomeBracketFloor: 90001, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "3.078%", rate: .03078, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 21600 },
+    { id: 1, bracket: "3.762%", rate: .03762, totalTaxBelowBracket: 665, taxBracketFloor: 21601, taxBracketCeiling: 45000 },
+    { id: 2, bracket: "3.819%", rate: .03819, totalTaxBelowBracket: 1545, taxBracketFloor: 45001, taxBracketCeiling: 90000 },
+    { id: 3, bracket: "3.876%", rate: .03876, totalTaxBelowBracket: 3264, taxBracketFloor: 90001, taxBracketCeiling: null }
 ];
 
 const newYorkCityMFSTaxBrackets = [
-    { id: 0, bracket: "3.078%", rate: .03078, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 12000 },
-    { id: 1, bracket: "3.762%", rate: .03762, totalTaxBelowBracket: 369, taxableIncomeBracketFloor: 12001, taxableIncomeBracketCeiling: 25000 },
-    { id: 2, bracket: "3.819%", rate: .03819, totalTaxBelowBracket: 858, taxableIncomeBracketFloor: 25001, taxableIncomeBracketCeiling: 50000 },
-    { id: 3, bracket: "3.876%", rate: .03876, totalTaxBelowBracket: 1813, taxableIncomeBracketFloor: 50001, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "3.078%", rate: .03078, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 12000 },
+    { id: 1, bracket: "3.762%", rate: .03762, totalTaxBelowBracket: 369, taxBracketFloor: 12001, taxBracketCeiling: 25000 },
+    { id: 2, bracket: "3.819%", rate: .03819, totalTaxBelowBracket: 858, taxBracketFloor: 25001, taxBracketCeiling: 50000 },
+    { id: 3, bracket: "3.876%", rate: .03876, totalTaxBelowBracket: 1813, taxBracketFloor: 50001, taxBracketCeiling: null }
 ];
 
 const newYorkCityHOHTaxBrackets = [
-    { id: 0, bracket: "3.078%", rate: .03078, totalTaxBelowBracket: 0, taxableIncomeBracketFloor: null, taxableIncomeBracketCeiling: 14400 },
-    { id: 1, bracket: "3.762%", rate: .03762, totalTaxBelowBracket: 443, taxableIncomeBracketFloor: 14401, taxableIncomeBracketCeiling: 30000 },
-    { id: 2, bracket: "3.819%", rate: .03819, totalTaxBelowBracket: 1030, taxableIncomeBracketFloor: 30001, taxableIncomeBracketCeiling: 60000 },
-    { id: 3, bracket: "3.876%", rate: .03876, totalTaxBelowBracket: 2176, taxableIncomeBracketFloor: 60001, taxableIncomeBracketCeiling: null }
+    { id: 0, bracket: "3.078%", rate: .03078, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 14400 },
+    { id: 1, bracket: "3.762%", rate: .03762, totalTaxBelowBracket: 443, taxBracketFloor: 14401, taxBracketCeiling: 30000 },
+    { id: 2, bracket: "3.819%", rate: .03819, totalTaxBelowBracket: 1030, taxBracketFloor: 30001, taxBracketCeiling: 60000 },
+    { id: 3, bracket: "3.876%", rate: .03876, totalTaxBelowBracket: 2176, taxBracketFloor: 60001, taxBracketCeiling: null }
 ];
 
 const federalStandardDeduction = [
