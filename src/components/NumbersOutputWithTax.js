@@ -15,7 +15,6 @@ import { useSelector } from "react-redux";
 const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxStateItemizedDeductionElements,
      taxOtherFederal, taxOtherState, paymentsFederal, paymentsState }) => {
 
-   
     const quarterFromStore = useSelector(store => store.quarter);
     const dependentsFromStore = useSelector(store => store.dependents);
     const filingStatusFromStore = useSelector(store => store.filingStatus);
@@ -46,8 +45,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
     const federalOtherTaxes = parseInt(taxInputDataAnnualized["otherFedTaxes"]);
     const stateOtherTaxes = taxInputDataAnnualized["otherStateTaxes"];
     const federalChildTaxCredits = childTaxCreditFunction(federalAdjustedGrossIncome, dependentsFromStore, filingStatusFromStore);
-    const federalTaxCalculated = taxCalcFunction(federalTaxableIncome, filingStatusFromStore, "FEDERAL") + seTax;
-    const stateTaxCalculated = taxCalcFunction(stateTaxableIncome, filingStatusFromStore, residencyFromStore);
+    const federalTaxCalculated = Math.round(taxCalcFunction(federalTaxableIncome, filingStatusFromStore, "FEDERAL") + seTax);
+    const stateTaxCalculated = Math.round(taxCalcFunction(stateTaxableIncome, filingStatusFromStore, residencyFromStore));
     const totalFederalTax = Math.round(federalOtherTaxes + federalTaxCalculated + federalChildTaxCredits);
     const totalStateTax = Math.round(stateOtherTaxes + stateTaxCalculated);
     const totalFederalQuarterTax = Math.round(totalFederalTax / annualizationFactor);
