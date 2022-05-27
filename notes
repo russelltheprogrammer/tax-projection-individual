@@ -1,13 +1,13 @@
 Notes
 
-
 Things To Do
 
 High Priority
 
-Calc tax, add function, don't forget to incorporate long term cap gains, QDs lower tax rate
+taxableIncome needs to limit cap gains loss
+calcTaxFunction needs to incorporate cap gains tax
 Need to change how state/city columns show up
-Addl Medicare taxes not calculated in S/E Tax, will I incorporate?
+change design
 
 Low Priority
 
