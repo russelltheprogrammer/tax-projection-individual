@@ -9,12 +9,14 @@ import ItemizedOutput from "./ItemizedOutput";
 import federalItemizedCalcFunction from "../functions/federalItemizedCalcFunction";
 import newYorkItemizedCalcFunction from "../functions/newYorkItemizedCalcFunction";
 import taxCalcFunction from "../functions/taxCalcFunction";
+import capitalLossLimitationFunction from "../functions/capitalLossLimitationFunction";
 import { useSelector } from "react-redux";
 
 
 const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState, taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxStateItemizedDeductionElements,
      taxOtherFederal, taxOtherState, paymentsFederal, paymentsState }) => {
 
+        
     const quarterFromStore = useSelector(store => store.quarter);
     const dependentsFromStore = useSelector(store => store.dependents);
     const filingStatusFromStore = useSelector(store => store.filingStatus);
@@ -26,10 +28,11 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
     const totalAdjustmentsBeforeSETaxDed = summationFunction(taxInputDataAnnualized, taxAdjustmentElements);
     const seTax = seTaxFunction(taxInputDataAnnualized["businessIncome"], taxInputDataAnnualized["wages"]);
     const deductibleSETax = Math.round(seTax/-2);
+    const capitalLossLimitation = capitalLossLimitationFunction(taxInputDataAnnualized["shortCapitalIncome"], taxInputDataAnnualized["longCapitalIncome"]);
     const totalAdjustmentsAfterSETaxDed = totalAdjustmentsBeforeSETaxDed + deductibleSETax;
     const totalStateOther = summationFunction(taxInputDataAnnualized, taxOtherState);
-    const federalAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed;
-    const stateAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed + totalStateOther;  
+    const federalAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed + capitalLossLimitation;
+    const stateAdjustedGrossIncome = totalIncome + totalAdjustmentsAfterSETaxDed + capitalLossLimitation + totalStateOther;  
     const totalFederalItemized = federalItemizedCalcFunction(federalAdjustedGrossIncome, taxInputDataAnnualized);
     const totalStateItemized = newYorkItemizedCalcFunction(stateAdjustedGrossIncome, taxInputDataAnnualized);
     const federalStandard = standardFunction("federal", filingStatusFromStore);
@@ -112,6 +115,18 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         )}
 
                         <tr className="table-total-row">
+                            <th scope="row">TOTAL STATE OTHER</th>
+                            <td className="table-na-section">{NA}</td>
+                            <td >{totalStateOther}</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" className="table-description-item">CAPITAL LOSS LIMITATION</th>
+                            <td>{capitalLossLimitation}</td>
+                            <td>{capitalLossLimitation}</td>
+                        </tr>
+
+                        <tr className="table-total-row">
                             <th scope="row">ADJUSTED GROSS INCOME</th>
                             <td>{federalAdjustedGrossIncome}</td>
                             <td>{stateAdjustedGrossIncome}</td>
@@ -161,13 +176,13 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         </tr>
 
                         <tr>
-                            <th scope="row">TOTAL OTHER TAX</th>
+                            <th scope="row" className="table-description-item">TOTAL OTHER TAX</th>
                             <td>{federalOtherTaxes}</td>
                             <td>{stateOtherTaxes}</td>
                         </tr>
 
                         <tr>
-                            <th scope="row">FED CHILD TAX CREDITS</th>
+                            <th scope="row" className="table-description-item">FEDERAL CHILD TAX CREDITS</th>
                             <td>{federalChildTaxCredits}</td>
                             <td className="table-na-section">{NA}</td>
                         </tr>
@@ -186,37 +201,37 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
 
                         {/* This section can be re-factored at some point */}
                         <tr>
-                            <th scope="row">{paymentsFederal[0]["element"]}</th>
+                            <th scope="row" className="table-description-item">{paymentsFederal[0]["element"]}</th>
                             <td>{paymentsInputValuesState["fedWagesWithholding"]}</td>
                             <td>{paymentsInputValuesState["stateWagesWithholding"]}</td>
                         </tr>
                         <tr>
-                            <th scope="row">{paymentsFederal[1]["element"]}</th>
+                            <th scope="row" className="table-description-item">{paymentsFederal[1]["element"]}</th>
                             <td>{paymentsInputValuesState["fedPYOP"]}</td>
                             <td>{paymentsInputValuesState["statePYOP"]}</td>
                         </tr>
                         <tr>
-                            <th scope="row">{paymentsFederal[2]["element"]}</th>
+                            <th scope="row" className="table-description-item">{paymentsFederal[2]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ1"]}</td>
                             <td>{paymentsInputValuesState["stateQ1"]}</td>
                         </tr>
                         <tr>
-                            <th scope="row">{paymentsFederal[3]["element"]}</th>
+                            <th scope="row" className="table-description-item">{paymentsFederal[3]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ2"]}</td>
                             <td>{paymentsInputValuesState["stateQ2"]}</td>
                         </tr>
                         <tr>
-                            <th scope="row">{paymentsFederal[4]["element"]}</th>
+                            <th scope="row" className="table-description-item">{paymentsFederal[4]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ3"]}</td>
                             <td>{paymentsInputValuesState["stateQ3"]}</td>
                         </tr>
                         <tr>
-                            <th scope="row">{paymentsFederal[5]["element"]}</th>
+                            <th scope="row" className="table-description-item">{paymentsFederal[5]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ4"]}</td>
                             <td>{paymentsInputValuesState["stateQ4"]}</td>
                         </tr>
                         <tr>
-                            <th scope="row">{paymentsFederal[6]["element"]}</th>
+                            <th scope="row" className="table-description-item">{paymentsFederal[6]["element"]}</th>
                             <td>{paymentsInputValuesState["fedCredits"]}</td>
                             <td>{paymentsInputValuesState["stateCredits"]}</td>
                         </tr>
