@@ -4,8 +4,7 @@ Things To Do
 
 High Priority
 
-taxableIncome needs to limit cap gains loss
-calcTaxFunction needs to incorporate cap gains tax
+calcTaxFunction needs to incorporate cap gains tax for ltcg and qual div
 Need to change how state/city columns show up
 change design
 
