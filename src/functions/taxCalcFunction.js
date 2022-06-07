@@ -4,12 +4,15 @@ import { federalSingleTaxBrackets, federalMFJTaxBrackets, federalMFSTaxBrackets,
     from "../constants";
 import taxBracketTaxFunction from "./taxBracketTaxFunction";
 
-const taxCalcFunction = (taxableIncome, filingStatus, residency) => {
+const taxCalcFunction = (taxableIncome, filingStatus, residency, shortTermCapital, longTermCapital, qualifiedDividends) => {
    
     let taxBracket;
     let taxBracket2 = null;
     let expr = filingStatus + " & " + residency;
     let calculatedTax = 0;
+    let modifiedTaxableIncome = taxableIncome;
+    let capGainsTaxableIncome = 0;
+    let totalCapitalGains = shortTermCapital + longTermCapital;
 
     if(taxableIncome < 1){
         return calculatedTax;
@@ -18,6 +21,20 @@ const taxCalcFunction = (taxableIncome, filingStatus, residency) => {
         return calculatedTax;
     }
     else {
+        if(longTermCapital >= shortTermCapital && totalCapitalGains >= -3000){
+            modifiedTaxableIncome -= longTermCapital + shortTermCapital + qualifiedDividends;
+            capGainsTaxableIncome += longTermCapital + shortTermCapital + qualifiedDividends;
+        }
+        else if(qualifiedDividends > 0 && totalCapitalGains >= -3000){
+            modifiedTaxableIncome -= longTermCapital + qualifiedDividends;
+            capGainsTaxableIncome += longTermCapital + qualifiedDividends;
+        }
+        else {
+            modifiedTaxableIncome -= 0;
+            capGainsTaxableIncome += 0;
+        }
+    }
+
         switch(expr) {
             case "SINGLE & FEDERAL":
                 taxBracket = federalSingleTaxBrackets;
@@ -73,7 +90,7 @@ const taxCalcFunction = (taxableIncome, filingStatus, residency) => {
         return calculatedTax;
     }
     return console.log("No tax calculated, there is an error in the the taxCalcFunction");
-    }
+    
 }
 
 export default taxCalcFunction;
