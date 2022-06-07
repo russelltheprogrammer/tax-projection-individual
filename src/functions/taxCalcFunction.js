@@ -10,9 +10,9 @@ const taxCalcFunction = (taxableIncome, filingStatus, residency, shortTermCapita
     let taxBracket2 = null;
     let expr = filingStatus + " & " + residency;
     let calculatedTax = 0;
-    let modifiedTaxableIncome = taxableIncome;
-    let capGainsTaxableIncome = 0;
     let totalCapitalGains = shortTermCapital + longTermCapital;
+    let schDNumberToUse = 0;
+    let capGainsTaxableIncome = 0;
 
     if(taxableIncome < 1){
         return calculatedTax;
@@ -21,17 +21,8 @@ const taxCalcFunction = (taxableIncome, filingStatus, residency, shortTermCapita
         return calculatedTax;
     }
     else {
-        if(longTermCapital >= shortTermCapital && totalCapitalGains >= -3000){
-            modifiedTaxableIncome -= longTermCapital + shortTermCapital + qualifiedDividends;
-            capGainsTaxableIncome += longTermCapital + shortTermCapital + qualifiedDividends;
-        }
-        else if(qualifiedDividends > 0 && totalCapitalGains >= -3000){
-            modifiedTaxableIncome -= longTermCapital + qualifiedDividends;
-            capGainsTaxableIncome += longTermCapital + qualifiedDividends;
-        }
-        else {
-            modifiedTaxableIncome -= 0;
-            capGainsTaxableIncome += 0;
+        if(longTermCapitalGain <= 0 && totalCapitalGains <= 0){
+            schDNumberToUse = 0;
         }
     }
 
