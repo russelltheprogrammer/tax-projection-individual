@@ -159,6 +159,20 @@ const otherTaxes = [
 
 const maxSETaxThreshold = 147000;
 
+const SchDLineSix = [
+    { id: 0, filingStatus: "SINGLE", value: 40400 },
+    { id: 1, filingStatus: "MFJ", value: 40400 },
+    { id: 2, filingStatus: "MFS", value: 80800 },
+    { id: 3, filingStatus: "HOH", value: 54100 }
+]
+
+const SchDLineThirteen = [
+    { id: 0, filingStatus: "SINGLE", value: 445850 },
+    { id: 1, filingStatus: "MFJ", value: 250800 },
+    { id: 2, filingStatus: "MFS", value: 501600 },
+    { id: 3, filingStatus: "HOH", value: 473750 }
+]
+
 const federalSingleTaxBrackets = [
     { id: 0, bracket: "10%", rate: .10, totalTaxBelowBracket: 0, taxBracketFloor: null, taxBracketCeiling: 10275 },
     { id: 1, bracket: "12%", rate: .12, totalTaxBelowBracket: 1028, taxBracketFloor: 10276, taxBracketCeiling: 41775 },
@@ -296,6 +310,7 @@ const newYorkStandardDeduction = [
 
 export { numbersInputInitialState, paymentsInputInitialState, taxAssumptionsElements, 
     taxIncomeElements, taxAdjustmentElements, taxItemizedDeductionElements, taxStateItemizedDeductionElements, taxOtherFederal, taxOtherState, 
-    paymentsFederal, paymentsState, otherTaxes, maxSETaxThreshold, federalSingleTaxBrackets, federalMFJTaxBrackets, federalMFSTaxBrackets, federalHOHTaxBrackets,
-    newYorkStateSingleTaxBrackets, newYorkStateMFJTaxBrackets, newYorkStateMFSTaxBrackets, newYorkStateHOHTaxBrackets, newYorkCitySingleTaxBrackets, newYorkCityMFJTaxBrackets,
+    paymentsFederal, paymentsState, otherTaxes, maxSETaxThreshold, SchDLineSix, SchDLineThirteen, federalSingleTaxBrackets, federalMFJTaxBrackets, 
+    federalMFSTaxBrackets, federalHOHTaxBrackets, newYorkStateSingleTaxBrackets, newYorkStateMFJTaxBrackets, newYorkStateMFSTaxBrackets, 
+    newYorkStateHOHTaxBrackets, newYorkCitySingleTaxBrackets, newYorkCityMFJTaxBrackets,
     newYorkCityMFSTaxBrackets, newYorkCityHOHTaxBrackets, federalStandardDeduction, newYorkStandardDeduction };
