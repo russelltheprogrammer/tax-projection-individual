@@ -3,6 +3,7 @@ import { federalSingleTaxBrackets, federalMFJTaxBrackets, federalMFSTaxBrackets,
     newYorkCityMFSTaxBrackets, newYorkCityHOHTaxBrackets }
     from "../constants";
 import taxBracketTaxFunction from "./taxBracketTaxFunction";
+import schDTaxWorksheetLineThresholdCalculation from "./schDTaxWorksheetLineThresholdCalculation";
 
 const taxCalcFunction = (taxableIncome, filingStatus, residency, shortTermCapital, longTermCapital, qualifiedDividends) => {
    
@@ -10,9 +11,17 @@ const taxCalcFunction = (taxableIncome, filingStatus, residency, shortTermCapita
     let taxBracket2 = null;
     let expr = filingStatus + " & " + residency;
     let calculatedTax = 0;
+
+    // refactor capital gains into its own function?
+    let schDLineSixThreshold = schDTaxWorksheetLineThresholdCalculation(filingStatus, "SchDLineSix");
+    let schDLineThirteenThreshold = schDTaxWorksheetLineThresholdCalculation(filingStatus, "SchDLineThirteen");
     let totalCapitalGains = shortTermCapital + longTermCapital;
-    let schDNumberToUse = 0;
-    let capGainsTaxableIncome = 0;
+    let SchDLineThree = 0;
+    let capitalGainsPlusQualifiedDividends = 0;
+    let schDLineFive = 0;
+    let schDLineSeven = 0;
+    let schDLineEight = 0;
+    let schDLineNine = 0;
 
     if(taxableIncome < 1){
         return calculatedTax;
@@ -21,10 +30,46 @@ const taxCalcFunction = (taxableIncome, filingStatus, residency, shortTermCapita
         return calculatedTax;
     }
     else {
-        if(longTermCapitalGain <= 0 && totalCapitalGains <= 0){
-            schDNumberToUse = 0;
+        if(longTermCapital >= totalCapitalGains){
+            if(totalCapitalGains <= 0){
+                SchDLineThree = 0;
+            }
+            else {
+                SchDLineThree = totalCapitalGains;
+            }
+        }
+        else {
+            if(longTermCapital <= 0){
+                SchDLineThree = 0;
+            }
+            else {
+                SchDLineThree = longTermCapital;
+            }
         }
     }
+
+    capitalGainsPlusQualifiedDividends += SchDLineThree + qualifiedDividends;
+    schDLineFive = taxableIncome - capitalGainsPlusQualifiedDividends;
+
+    if(schDLineSixThreshold <= taxableIncome){
+        schDLineSeven = schDLineSixThreshold;
+    }
+    else {
+        schDLineSeven = taxableIncome;
+    }
+
+    if(schDLineFive <=  schDLineSeven){
+        schDLineEight = schDLineFive;
+    }
+    else {
+        schDLineEight = schDLineSeven;
+    }
+
+   schDLineNine = schDLineSeven - schDLineEight;
+
+    
+
+   
 
         switch(expr) {
             case "SINGLE & FEDERAL":
