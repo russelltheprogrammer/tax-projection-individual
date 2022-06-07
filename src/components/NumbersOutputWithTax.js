@@ -48,7 +48,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
     const federalOtherTaxes = parseInt(taxInputDataAnnualized["otherFedTaxes"]);
     const stateOtherTaxes = taxInputDataAnnualized["otherStateTaxes"];
     const federalChildTaxCredits = childTaxCreditFunction(federalAdjustedGrossIncome, dependentsFromStore, filingStatusFromStore);
-    const federalTaxCalculated = Math.round(taxCalcFunction(federalTaxableIncome, filingStatusFromStore, "FEDERAL") + seTax);
+    const federalTaxCalculated = Math.round(taxCalcFunction(federalTaxableIncome, filingStatusFromStore, "FEDERAL", parseInt(taxInputDataAnnualized["shortCapitalIncome"]), 
+            parseInt(taxInputDataAnnualized["longCapitalIncome"]), parseInt(taxInputDataAnnualized["qualifiedDividends"])) + seTax);
     const stateTaxCalculated = Math.round(taxCalcFunction(stateTaxableIncome, filingStatusFromStore, residencyFromStore));
     const totalFederalTax = Math.round(federalOtherTaxes + federalTaxCalculated + federalChildTaxCredits);
     const totalStateTax = Math.round(stateOtherTaxes + stateTaxCalculated);
