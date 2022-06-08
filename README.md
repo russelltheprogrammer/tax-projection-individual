@@ -10,7 +10,7 @@ This project was created to test my front end development skills at the next lev
 
 I plan to use this application to help individuals estimate their quarterly estimated taxes which is its main functionality. The United States and New York tax codes are complex and not everyone can afford a high end tax accountant. I hope this application can help small time freelancers and others.
 
-I had to pick and choose how complicated I wanted to make this application. To complete an entire tax projection application with every little detail is extremely complicated and time consuming. The United states tax code is extremely complicated. I had to balance time versus complexity in building my application. Sounds like a Big O Notation problem (a little coding joke)...
+I had to pick and choose how complicated I wanted to make this application. To complete an entire tax projection application with every little detail is extremely complicated and time consuming. The United states tax code is extremely complex. I had to balance time versus complexity in building my application. Sounds like a Big O Notation problem (a little coding joke)...
 
 ## More Features?
 

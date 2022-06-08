@@ -4,23 +4,24 @@ Things To Do
 
 High Priority
 
-calcTaxFunction needs to incorporate cap gains tax for ltcg and qual div
+debug tax calc function
 Need to change how state/city columns show up
 change design
 
 Low Priority
 
 Refactor NumbersOuputWithTax Component section with payments
+Refactor capital gains calculation into its own function outside of regular tax calculation function
 
 
 More features? See notes outside of github.
 
 
-
 Items that change per year and which need to be updated in the constants
--S/E Tax rate
--Tax Brackets
--Federal & NY Standard Deduction
+-S/E tax rate
+-Qualified Dividends and Capital Gain Tax Worksheet line thresholds
+-Tax brackets
+-Federal & NY standard deductions
 
 
 
