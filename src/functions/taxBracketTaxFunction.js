@@ -1,4 +1,6 @@
-const taxBracketTaxFunction = (taxBracket, taxableIncome, tax) => {
+const taxBracketTaxFunction = (taxBracket, taxableIncome) => {
+    let tax = 0;
+
     for(let i = 0; i < taxBracket.length; i++){
      if(taxableIncome <= taxBracket[i]["taxBracketCeiling"] && taxBracket[i]["taxBracketFloor"] === null){
          tax += taxableIncome * taxBracket[i]["rate"];
