@@ -2,7 +2,7 @@
 
 
 body {
-  background-color: beige;
+  background-color: rgb(247, 247, 225);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -38,6 +38,12 @@ body {
   background-color: lightblue;
   border: 3px groove black;
   border-radius: 10%;
+}
+
+@media (max-width: 1100px){
+  .user-input-box{
+   margin-top: 1%;
+  }
 }
 
 #tax-assumptions-box{
@@ -90,8 +96,8 @@ body {
 
 #numbers-input-box{
   margin-top: 2%;
-  width: 60%;
-  margin-left: 20%;
+  width: 70%;
+  margin-left: 15%;
   border: 3px groove black;
   background-color: white;
 }
@@ -113,24 +119,54 @@ body {
 }
 
 #numbers-input-submit-button{
-  margin-top: 1%;
-  margin-bottom: 1%;
+  margin: 1% 30% 1% 45%;
   font-size: 150%;
   font-weight: 500;
   border: 3px groove black;
   border-radius: 10%;
-  margin-left: 45%;
   padding: .5% 1.5% .5% 1.5%;
 }
 
+@media (min-width: 881px) and (max-width: 1080px){
+  #numbers-input-submit-button{
+    margin-right: 25%;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 880px){
+  #numbers-input-submit-button{
+    margin-right: 20%;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 760px){
+  #numbers-input-submit-button{
+    margin-right: 50%;
+    margin-left: 10%
+  }
+}
+
+@media (min-width: 461px) and (max-width: 640px){
+  #numbers-input-submit-button{
+    margin-right: 40%;
+    margin-left: 5%
+  }
+}
+
+@media (min-width: 200px) and (max-width: 460px){
+  #numbers-input-submit-button{
+    margin-right: 18%;
+    margin-left: 5%
+  }
+}
+
 #numbers-input-reset-button{
-  margin-bottom: 1%;
-  font-size: 120%;
+  margin-top: 1% 0% 1% 0%;
+  font-size: 110%;
   font-weight: 500;
   border: 3px groove black;
   border-radius: 10%;
-  margin-left: 46.5%;
-  padding: .5% 1.5% .5% 1.5%;
+  padding: .1% 1% .1% 1%;
 }
 
 .reset-button{
