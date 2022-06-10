@@ -10,6 +10,7 @@ import federalItemizedCalcFunction from "../functions/federalItemizedCalcFunctio
 import newYorkItemizedCalcFunction from "../functions/newYorkItemizedCalcFunction";
 import taxCalcFunction from "../functions/taxCalcFunction";
 import capitalLossLimitationFunction from "../functions/capitalLossLimitationFunction";
+import stateColumnView from "./stateColumnView";
 import { useSelector } from "react-redux";
 
 
@@ -77,71 +78,73 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
                             <td>{taxInputDataAnnualized[item.hardValue]}</td>
-                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
+                            {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized[item.hardValue])}
                         </tr>
                         )}
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL INCOME</th>
                             <td>{totalIncome}</td>
-                            <td>{totalIncome}</td>
+                            {stateColumnView(residencyFromStore, NA, totalIncome)}
                         </tr>
 
                         {taxAdjustmentElements.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
                             <td>{taxInputDataAnnualized[item.hardValue]}</td>
-                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
+                            {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized[item.hardValue])}
                         </tr>
                         )}
 
                         <tr>
                             <th scope="row" className="table-description-item">DEDUCTIBLE S/E TAX</th>
                             <td>{deductibleSETax}</td>
-                            <td>{deductibleSETax}</td>
+                            {stateColumnView(residencyFromStore, NA, deductibleSETax)}
                         </tr>
 
                         <tr className="table-total-row">
                             <th scope="row" >TOTAL ADJUSTMENTS</th>
                             <td>{totalAdjustmentsAfterSETaxDed}</td>
-                            <td>{totalAdjustmentsAfterSETaxDed}</td>
+                            {stateColumnView(residencyFromStore, NA, totalAdjustmentsAfterSETaxDed)}
                         </tr>
 
                         {taxOtherState.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
                             <td className="table-na-section">{NA}</td>
-                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
+                            {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized[item.hardValue])}
                         </tr>
                         )}
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL STATE OTHER</th>
                             <td className="table-na-section">{NA}</td>
-                            <td >{totalStateOther}</td>
+                            {stateColumnView(residencyFromStore, NA, totalStateOther)}
                         </tr>
 
                         <tr>
                             <th scope="row" className="table-description-item">CAPITAL LOSS LIMITATION</th>
                             <td>{capitalLossLimitation}</td>
-                            <td>{capitalLossLimitation}</td>
+                            {stateColumnView(residencyFromStore, NA, capitalLossLimitation)}
                         </tr>
 
                         <tr className="table-total-row">
                             <th scope="row">ADJUSTED GROSS INCOME</th>
                             <td>{federalAdjustedGrossIncome}</td>
-                            <td>{stateAdjustedGrossIncome}</td>
+                            {stateColumnView(residencyFromStore, NA, stateAdjustedGrossIncome)}
                         </tr>
                 </tbody>
                             {standardOrItemizedFromStore === "STANDARD" ? 
-                            <StandardOutput federalStandard={federalStandard} stateStandard={stateStandard} /> : 
+                            <StandardOutput federalStandard={federalStandard} stateStandard={stateStandard} NA={NA} residencyFromStore={residencyFromStore} /> : 
                             <ItemizedOutput 
                                 taxItemizedDeductionElements={taxItemizedDeductionElements}
                                 taxStateItemizedDeductionElements={taxStateItemizedDeductionElements} 
                                 taxInputDataAnnualized={taxInputDataAnnualized}
                                 totalFederalItemized={totalFederalItemized}
                                 totalStateItemized={totalStateItemized}
-                                NA={NA} />
+                                NA={NA}
+                                residencyFromStore={residencyFromStore} 
+                                />
                             }
                 <tbody style={{borderTop: "none" }}>
                          {taxOtherFederal.map((item) => 
@@ -161,25 +164,25 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         <tr >
                             <th scope="row" className="table-description-item">STATE DEPENDENT EXEMPTIONS</th>
                             <td className="table-na-section">{NA}</td>
-                            <td>{stateDependentExemptions}</td>
+                            {stateColumnView(residencyFromStore, NA, stateDependentExemptions)}
                         </tr>
 
                         <tr className="table-total-row">
                             <th scope="row">TAXABLE INCOME</th>
                             <td>{federalTaxableIncome}</td>
-                            <td>{stateTaxableIncome}</td>
+                            {stateColumnView(residencyFromStore, NA, stateTaxableIncome)}
                         </tr>
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL CALCULATED TAX</th>
                             <td>{federalTaxCalculated}</td>
-                            <td>{stateTaxCalculated}</td>
+                            {stateColumnView(residencyFromStore, NA, stateTaxCalculated)}
                         </tr>
 
                         <tr>
                             <th scope="row" className="table-description-item">TOTAL OTHER TAX</th>
                             <td>{federalOtherTaxes}</td>
-                            <td>{stateOtherTaxes}</td>
+                            {stateColumnView(residencyFromStore, NA, stateOtherTaxes)}
                         </tr>
 
                         <tr>
@@ -191,63 +194,63 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         <tr className="table-total-row">
                             <th scope="row">TOTAL ALL TAX</th>
                             <td>{totalFederalTax}</td>
-                            <td>{totalStateTax}</td>
+                            {stateColumnView(residencyFromStore, NA, totalStateTax)}
                         </tr>
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL QUARTERLY TAX DUE</th>
                             <td>{totalFederalQuarterTax}</td>
-                            <td>{totalStateQuarterTax}</td>
+                            {stateColumnView(residencyFromStore, NA, totalStateQuarterTax)}
                         </tr>
 
                         {/* This section can be re-factored at some point */}
                         <tr>
                             <th scope="row" className="table-description-item">{paymentsFederal[0]["element"]}</th>
                             <td>{paymentsInputValuesState["fedWagesWithholding"]}</td>
-                            <td>{paymentsInputValuesState["stateWagesWithholding"]}</td>
+                            {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateWagesWithholding"])}
                         </tr>
                         <tr>
                             <th scope="row" className="table-description-item">{paymentsFederal[1]["element"]}</th>
                             <td>{paymentsInputValuesState["fedPYOP"]}</td>
-                            <td>{paymentsInputValuesState["statePYOP"]}</td>
+                            {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["statePYOP"])}
                         </tr>
                         <tr>
                             <th scope="row" className="table-description-item">{paymentsFederal[2]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ1"]}</td>
-                            <td>{paymentsInputValuesState["stateQ1"]}</td>
+                            {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateQ1"])}
                         </tr>
                         <tr>
                             <th scope="row" className="table-description-item">{paymentsFederal[3]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ2"]}</td>
-                            <td>{paymentsInputValuesState["stateQ2"]}</td>
+                            {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateQ2"])}
                         </tr>
                         <tr>
                             <th scope="row" className="table-description-item">{paymentsFederal[4]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ3"]}</td>
-                            <td>{paymentsInputValuesState["stateQ3"]}</td>
+                            {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateQ3"])}
                         </tr>
                         <tr>
                             <th scope="row" className="table-description-item">{paymentsFederal[5]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ4"]}</td>
-                            <td>{paymentsInputValuesState["stateQ4"]}</td>
+                            {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateQ4"])}
                         </tr>
                         <tr>
                             <th scope="row" className="table-description-item">{paymentsFederal[6]["element"]}</th>
                             <td>{paymentsInputValuesState["fedCredits"]}</td>
-                            <td>{paymentsInputValuesState["stateCredits"]}</td>
+                            {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateCredits"])}
                         </tr>
                         {/* End section that can be re-factored at some point */}
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL PAYMENTS</th>
                             <td>{totalFederalPayments}</td>
-                            <td>{totalStatePayments}</td>
+                            {stateColumnView(residencyFromStore, NA, totalStatePayments)}
                         </tr>
 
                         <tr className="table-total-row">
                             <th scope="row">TOTAL TAX DUE/(OVERPAID)</th>
                             <td>{totalFedTaxDueOverpaid}</td>
-                            <td>{totalStateTaxDueOverpaid}</td>
+                            {stateColumnView(residencyFromStore, NA, totalStateTaxDueOverpaid)}
                         </tr>
 
                 </tbody>
