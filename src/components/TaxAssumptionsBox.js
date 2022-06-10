@@ -68,6 +68,8 @@ const handleChange = (elementId, e) => {
     };
 };
 
+console.log("quarter: " + quarter, "filingStatus: " + filingStatus, "standard: " + standard, "dependents: " + dependents, "residency: " + residency);
+
     return ( 
         <div>
         <div id="tax-assumptions-box">
@@ -83,14 +85,8 @@ const handleChange = (elementId, e) => {
                 </select> 
               </div>
                )}
-               
            </div>
             <button id="tax-assumptions-submit-button" className="submit-button" type="submit" onClick={handleSubmit}>SUBMIT</button><br/>
-            {quarter}
-            {filingStatus}
-            {standard}
-            {dependents}
-            {residency}
         </div>
        </div>
        </div>
