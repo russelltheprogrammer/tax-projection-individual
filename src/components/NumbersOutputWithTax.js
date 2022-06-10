@@ -11,6 +11,7 @@ import newYorkItemizedCalcFunction from "../functions/newYorkItemizedCalcFunctio
 import taxCalcFunction from "../functions/taxCalcFunction";
 import capitalLossLimitationFunction from "../functions/capitalLossLimitationFunction";
 import stateColumnView from "./stateColumnView";
+import quarterFactorCalcFunction from "../functions/quarterFactorCalcFunction";
 import { useSelector } from "react-redux";
 
 
@@ -24,6 +25,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
     const standardOrItemizedFromStore = useSelector(store => store.standard);
     const residencyFromStore = useSelector(store => store.residency);
     const annualizationFactor = annualizationFactorCalcFunction(quarterFromStore);
+    const quarterFactor = quarterFactorCalcFunction(quarterFromStore);
     const taxInputDataAnnualized = annualizeDataFunction(numbersInputValuesState, annualizationFactor);
     const totalIncome = summationFunction(taxInputDataAnnualized, taxIncomeElements);
     const totalAdjustmentsBeforeSETaxDed = summationFunction(taxInputDataAnnualized, taxAdjustmentElements);
@@ -54,8 +56,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
     const stateTaxCalculated = Math.round(taxCalcFunction(stateTaxableIncome, filingStatusFromStore, residencyFromStore));
     const totalFederalTax = Math.round(federalOtherTaxes + federalTaxCalculated + federalChildTaxCredits);
     const totalStateTax = Math.round(stateOtherTaxes + stateTaxCalculated);
-    const totalFederalQuarterTax = Math.round(totalFederalTax / annualizationFactor);
-    const totalStateQuarterTax = Math.round(totalStateTax / annualizationFactor);
+    const totalFederalQuarterTax = Math.round(totalFederalTax / quarterFactor);
+    const totalStateQuarterTax = Math.round(totalStateTax / quarterFactor);
     const totalFederalPayments = summationFunction(paymentsInputValuesState, paymentsFederal);
     const totalStatePayments = summationFunction(paymentsInputValuesState, paymentsState);
     const totalFedTaxDueOverpaid = totalFederalQuarterTax - totalFederalPayments;
