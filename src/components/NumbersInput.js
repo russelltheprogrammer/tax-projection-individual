@@ -84,7 +84,7 @@ const NumbersInput = () => {
                 <NumbersInputComponent elementData={paymentsState} elementData2={null} title={"STATE TAX PAYMENTS"} color={"success"} numbersInputValuesState={paymentsInputValuesState} 
                 handleInputChange={handlePaymentsInputChange} />
                 
-                <button id="numbers-input-submit-button" className="submit-button" onClick={handleSubmit} type="submit">SUBMIT</button><br/>
+                <button id="numbers-input-submit-button" className="submit-button" onClick={handleSubmit} type="submit">SUBMIT</button>
                 <button id="numbers-input-reset-button" className="reset-button" onClick={resetNumbersValuesState}>RESET</button>
             </div>
             <div>
