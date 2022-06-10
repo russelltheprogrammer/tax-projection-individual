@@ -8,15 +8,15 @@ const ItemizedOutput = ({ taxItemizedDeductionElements, taxStateItemizedDeductio
             {taxItemizedDeductionElements.map((item) => 
                 <tr key={item.id}>
                     <th scope="row" className="table-description-item">{item.element}</th>
-                    <td>{taxInputDataAnnualized[item.hardValue]}</td>
-                    {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized[item.hardValue])}
+                    <td>{parseInt(taxInputDataAnnualized[item.hardValue])}</td>
+                    {stateColumnView(residencyFromStore, NA, parseInt(taxInputDataAnnualized[item.hardValue]))}
                 </tr>
                 )}
 
                 <tr>
                     <th scope="row" className="table-description-item">{taxStateItemizedDeductionElements[0]["element"]}</th>
                     <td className="table-na-section">{NA}</td>
-                    {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized["stateSpecificItemized"])}
+                    {stateColumnView(residencyFromStore, NA, parseInt(taxInputDataAnnualized["stateSpecificItemized"]))}
                 </tr>
 
 

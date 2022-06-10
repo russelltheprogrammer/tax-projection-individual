@@ -79,8 +79,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         {taxIncomeElements.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
-                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
-                            {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized[item.hardValue])}
+                            <td>{parseInt(taxInputDataAnnualized[item.hardValue])}</td>
+                            {stateColumnView(residencyFromStore, NA, parseInt(taxInputDataAnnualized[item.hardValue]))}
                         </tr>
                         )}
 
@@ -93,8 +93,8 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         {taxAdjustmentElements.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
-                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
-                            {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized[item.hardValue])}
+                            <td>{parseInt(taxInputDataAnnualized[item.hardValue])}</td>
+                            {stateColumnView(residencyFromStore, NA, parseInt(taxInputDataAnnualized[item.hardValue]))}
                         </tr>
                         )}
 
@@ -112,7 +112,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
 
                         {taxOtherState.map((item) => 
                         <tr key={item.id}>
-                            <th scope="row" className="table-description-item">{item.element}</th>
+                            <th scope="row" className="table-description-item">{parseInt(item.element)}</th>
                             <td className="table-na-section">{NA}</td>
                             {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized[item.hardValue])}
                         </tr>
@@ -152,7 +152,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                          {taxOtherFederal.map((item) => 
                         <tr key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
-                            <td>{taxInputDataAnnualized[item.hardValue]}</td>
+                            <td>{parseInt(taxInputDataAnnualized[item.hardValue])}</td>
                             <td className="table-na-section">{NA}</td>
                         </tr>
                         )}
