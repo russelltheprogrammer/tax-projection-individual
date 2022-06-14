@@ -112,7 +112,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
 
                         {taxOtherState.map((item) => 
                         <tr key={item.id}>
-                            <th scope="row" className="table-description-item">{parseInt(item.element)}</th>
+                            <th scope="row" className="table-description-item">{item.element}</th>
                             <td className="table-na-section">{NA}</td>
                             {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized[item.hardValue])}
                         </tr>

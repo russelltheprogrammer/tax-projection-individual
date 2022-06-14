@@ -5,11 +5,11 @@ Things To Do
 High Priority
 
 debug tax calc function
-fix state other adjustments description
 change design
 
 Low Priority
 
+Hide Total State Other rows when not in use
 Refactor NumbersOuputWithTax Component section with payments
 Refactor capital gains calculation into its own function outside of regular tax calculation function
 
