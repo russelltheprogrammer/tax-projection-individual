@@ -11,6 +11,37 @@ I plan to use this application to help individuals estimate their quarterly esti
 
 I had to pick and choose how complicated I wanted to make this application. To complete an entire tax projection application with every little detail is extremely complicated and time consuming. The United States and State tax codes are extremely complex. I had to balance time versus complexity in building my application. Sounds like a Big O Notation problem (a little coding joke)...
 
+
+## Technical Documentation
+
+### Tax Types
+
+#### Included
+
++ Ordinary Tax
++ Capital Gains Tax
++ Self-Employment Tax
+
+#### Not Included
+
++ Alternative Minimum Tax
++ Net Investment Income Tax
++ Additional Medicare Tax
++ MCTMT Tax
+
+### Jurisdications Included
+
++ Federal
++ States with no income tax
++ New York
++ New York City
+
+### Other Notes
+
++ Short-Term and Long-Term Capital Gains/(Losses) are not annualized
++ Short-Term and Long-Term Capital Losses are limited to -$3,000
+
+
 ## More Features?
 
 In the future, I plan to make a more advanced version of the application. However, I built this all by myself and I have limited time capacity. There are a lot of additional features I would have liked to add to make this application more accurate and more functional, including adding additional scenarios, more jurisdications, and the list goes on...
