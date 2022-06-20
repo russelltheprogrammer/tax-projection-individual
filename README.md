@@ -42,15 +42,15 @@ I had to pick and choose how complicated I wanted to make this application. To c
 + Short-Term and Long-Term Capital Losses are limited to -$3,000
 
 
+## Disclosure: 
+
+Although I do believe this tax projection to be accurate and I have tested it for bugs do not rely upon this to estimate your own taxes. Taxes are complicated and this projection does not include all tax scenarios. Please consult a tax advisor while using this application.
+
 ## More Features?
 
 In the future, I plan to make a more advanced version of the application. However, I built this all by myself and I have limited time capacity. There are a lot of additional features I would have liked to add to make this application more accurate and more functional, including adding additional scenarios, more jurisdications, and the list goes on...
 
 Feature requests? Please let me know.
-
-## Disclosure: 
-
-Although I do believe this tax projection to be accurate and I have tested it for bugs do not rely upon this to estimate your own taxes. Taxes are complicated and this projection does not include all tax scenarios. Please consult a tax advisor while using this application.
 
 ## What I used to create?
 
