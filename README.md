@@ -80,8 +80,8 @@ If you see any bugs, please let me know.
 
 ## Connect With Me :mailbox:
 
-LinkedIn: <a href="https://www.linkedin.com/in/russell-monteith-cpa-0a43975a/"></a>
-Personal Webpage: <a href="https://russelltheprogrammer.github.io/personal-webpage/"></a>
+LinkedIn: [https://www.linkedin.com/in/russell-monteith-cpa-0a43975a/](https://www.linkedin.com/in/russell-monteith-cpa-0a43975a/)
+Personal Webpage: [https://russelltheprogrammer.github.io/personal-webpage/](https://russelltheprogrammer.github.io/personal-webpage/)
 
 
 
