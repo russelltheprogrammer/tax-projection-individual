@@ -59,7 +59,7 @@ const Header = (props) => {
                 variant="h5"
                 component="div"
                 sx={{ flexGrow: 1, 
-                    display: { xs: 'none', sm: 'block' },
+                    display: { xs: 'block', sm: 'block' },
                 }}>
                 {title}
                 </Typography>
