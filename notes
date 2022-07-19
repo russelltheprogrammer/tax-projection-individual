@@ -8,8 +8,6 @@ debug tax calc function
 change design
 add routes for documentation, info, and contact
 
--need to add textAlign to navbar so it changes when list items dissappear -> IconButton -> Typography
--Icon Button sx how to change when icon shows but how to add JS when you click on button when larger than xs? It has something to do with mobile responsiveness I think.
 
 Low Priority
 
