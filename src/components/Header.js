@@ -1,30 +1,22 @@
 import { AppBar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
 import React, { useState } from 'react';
-import {Routes, Route, useNavigate } from 'react-router-dom';
-import Footer from './Footer';
 
 
 const Header = (props) => {
 
-    // const navigate = useNavigate();
 
-    // const navigateToContact = () => {
-    //     navigate('/footer');
-    // };
-
-    // const navigateFunction = (item) => {
-    //     if(item === "Contact") {
-    //         return navigateToContact;
-    //     }
-    //     return undefined
-    // }
+    
 
     const drawerWidth = 240;
-    const navItems = ['Info', 'Documentation', 'Contact'];
+    const navItems = 
+        [[0, 'Info', "#info"], 
+        [1, 'Documentation', "https://github.com/russelltheprogrammer/tax-projection-individual#readme"],
+        [2, 'Contact', "#footer"]];
     const title = "TAX PROJECTION APPLICATION (BETA)"
 
-   
+   console.log(navItems[0][0], navItems[0][1], navItems[2][2]);
+
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -40,10 +32,11 @@ const Header = (props) => {
           </Typography>
           <Divider />
           <List>
+            {/* item[0] = id, item[1] = description, item[2] = link */}
             {navItems.map((item) => (
-            <ListItem key={item} disablePadding>
+            <ListItem key={item[0]} disablePadding>
                 <ListItemButton sx={{ textAlign: 'center' }}>
-                    <ListItemText primary={item} />
+                    <ListItemText primary={item[1]} />
                 </ListItemButton>
             </ListItem>
         ))}
@@ -82,15 +75,14 @@ const Header = (props) => {
                      <Box sx={{ 
                         display: { xs: 'none', sm: 'none', md: "block" }
                         }}>
+                            {/* item[0] = id, item[1] = description, item[2] = link */}
                         {navItems.map((item) => (
-                        <Button key={item} 
-                        // onClick={navigateFunction(item)} 
-                        sx={{ 
-                            color: '#fff',
-                            fontSize: "130%",
-                            }}>
-                            {item}
-                        </Button>
+                        <a className="header-anchor"
+                            target={item[1] === "Documentation" ? "_blank" : null}
+                            key={item[0]}
+                            href={item[2]}> 
+                            {item[1].toUpperCase()}
+                        </a>
                         ))}
                     </Box>
                 </Toolbar>
@@ -113,9 +105,6 @@ const Header = (props) => {
                 </Drawer>
             </Box>
         </Box>
-            {/* <Routes>
-                <Route exact path="/footer" element={<Footer />} />
-            </Routes> */}
         </div>
     );
 }
