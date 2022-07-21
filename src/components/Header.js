@@ -1,9 +1,24 @@
 import { AppBar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography } from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
 import React, { useState } from 'react';
+import {Routes, Route, useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 
 const Header = (props) => {
+
+    // const navigate = useNavigate();
+
+    // const navigateToContact = () => {
+    //     navigate('/footer');
+    // };
+
+    // const navigateFunction = (item) => {
+    //     if(item === "Contact") {
+    //         return navigateToContact;
+    //     }
+    //     return undefined
+    // }
 
     const drawerWidth = 240;
     const navItems = ['Info', 'Documentation', 'Contact'];
@@ -16,6 +31,7 @@ const Header = (props) => {
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
       };
+
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -51,7 +67,7 @@ const Header = (props) => {
                     aria-label="open drawer"
                     edge="start"
                     onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { sm: 'none' } }}
+                    sx={{ mr: 2, display: { md: 'none' } }}
                     >
                     <MenuIcon />
                 </IconButton>
@@ -67,7 +83,9 @@ const Header = (props) => {
                         display: { xs: 'none', sm: 'none', md: "block" }
                         }}>
                         {navItems.map((item) => (
-                        <Button key={item} sx={{ 
+                        <Button key={item} 
+                        // onClick={navigateFunction(item)} 
+                        sx={{ 
                             color: '#fff',
                             fontSize: "130%",
                             }}>
@@ -87,7 +105,7 @@ const Header = (props) => {
                         keepMounted: true, // Better open performance on mobile.
                     }}
                     sx={{
-                        display: { xs: 'block', sm: 'none' },
+                        display: { xs: 'block', md: 'none' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
                     >
@@ -95,6 +113,9 @@ const Header = (props) => {
                 </Drawer>
             </Box>
         </Box>
+            {/* <Routes>
+                <Route exact path="/footer" element={<Footer />} />
+            </Routes> */}
         </div>
     );
 }
