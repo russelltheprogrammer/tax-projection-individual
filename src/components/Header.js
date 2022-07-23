@@ -15,8 +15,6 @@ const Header = (props) => {
         [2, 'Contact', "#footer"]];
     const title = "TAX PROJECTION APPLICATION (BETA)"
 
-   console.log(navItems[0][0], navItems[0][1], navItems[2][2]);
-
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -34,10 +32,14 @@ const Header = (props) => {
           <List>
             {/* item[0] = id, item[1] = description, item[2] = link */}
             {navItems.map((item) => (
-            <ListItem key={item[0]} disablePadding>
-                <ListItemButton sx={{ textAlign: 'center' }}>
-                    <ListItemText primary={item[1]} />
-                </ListItemButton>
+            <ListItem key={item[0]} disablePadding sx={{ textAlign: 'center' }}>
+                <div className="header-list-anchor-container" key={item[0]}>
+                    <a className="header-list-anchor"
+                        target={item[1] === "Documentation" ? "_blank" : null}
+                        href={item[2]}> 
+                        {item[1]}
+                    </a>
+                </div>
             </ListItem>
         ))}
       </List>
