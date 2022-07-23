@@ -7,7 +7,7 @@ const Footer = () => {
             for a free consultation.<br/>
             Send me an <a href ="mailto: russelltheprogrammer@gmail.com"><b>E-MAIL</b></a> to report any bugs, feature requests, and/or questions.
             <br/><span style={{color: "red", fontWeight: "bold"}}>
-                This application is currently undergoing a redesign. Thank you for your understanding.</span>
+                This application is currently undergoing a redesign. Stay tuned!</span>
         </div>
      );
 }
