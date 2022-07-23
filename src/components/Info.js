@@ -5,7 +5,8 @@ const Info = () => {
             <p>Note: This is for Individual tax return types only, other tax return types will not work. At this time, this projection application can only handle New York State
                 and New York City tax jurisdictions. Please see contact information below if you have any questions, feature requests, and/or to report any bugs.
                 Please check out the <a href="https://github.com/russelltheprogrammer/tax-projection-individual#readme" target="_blank" rel="noreferrer"><b>technical documentation </b></a>
-                for additional information.
+                for additional information.<br/><br/>
+                Although mobile responsive. It is recommended to use this application on desktop because of the large amount of data input needed.
             </p>
         </div>
       )
