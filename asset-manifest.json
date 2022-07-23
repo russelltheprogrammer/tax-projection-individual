@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tax-projection-individual/static/css/main.54b6d625.css",
-    "main.js": "/tax-projection-individual/static/js/main.f7732c0b.js",
+    "main.css": "/tax-projection-individual/static/css/main.5d1bab11.css",
+    "main.js": "/tax-projection-individual/static/js/main.32caba5e.js",
     "static/js/787.28855335.chunk.js": "/tax-projection-individual/static/js/787.28855335.chunk.js",
     "index.html": "/tax-projection-individual/index.html",
-    "main.54b6d625.css.map": "/tax-projection-individual/static/css/main.54b6d625.css.map",
-    "main.f7732c0b.js.map": "/tax-projection-individual/static/js/main.f7732c0b.js.map",
+    "main.5d1bab11.css.map": "/tax-projection-individual/static/css/main.5d1bab11.css.map",
+    "main.32caba5e.js.map": "/tax-projection-individual/static/js/main.32caba5e.js.map",
     "787.28855335.chunk.js.map": "/tax-projection-individual/static/js/787.28855335.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.54b6d625.css",
-    "static/js/main.f7732c0b.js"
+    "static/css/main.5d1bab11.css",
+    "static/js/main.32caba5e.js"
   ]
 }
