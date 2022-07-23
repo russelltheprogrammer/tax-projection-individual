@@ -6,7 +6,7 @@ const Info = () => {
                 and New York City tax jurisdictions. Please see contact information below if you have any questions, feature requests, and/or to report any bugs.
                 Please check out the <a href="https://github.com/russelltheprogrammer/tax-projection-individual#readme" target="_blank" rel="noreferrer"><b>technical documentation </b></a>
                 for additional information.<br/><br/>
-                Although mobile responsive. It is recommended to use this application on desktop because of the large amount of data input needed.
+                Although mobile responsive, it is recommended to use this application on desktop because of the large amount of data input needed.
             </p>
         </div>
       )
