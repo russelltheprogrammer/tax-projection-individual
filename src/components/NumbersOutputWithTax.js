@@ -77,7 +77,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                 </thead>
                 <tbody>
                         {taxIncomeElements.map((item) => 
-                        <tr key={item.id}>
+                        <tr className="table-row-item-regular" key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
                             <td>{parseInt(taxInputDataAnnualized[item.hardValue])}</td>
                             {stateColumnView(residencyFromStore, NA, parseInt(taxInputDataAnnualized[item.hardValue]))}
@@ -91,14 +91,14 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         </tr>
 
                         {taxAdjustmentElements.map((item) => 
-                        <tr key={item.id}>
+                        <tr className="table-row-item-regular" key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
                             <td>{parseInt(taxInputDataAnnualized[item.hardValue])}</td>
                             {stateColumnView(residencyFromStore, NA, parseInt(taxInputDataAnnualized[item.hardValue]))}
                         </tr>
                         )}
 
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">DEDUCTIBLE S/E TAX</th>
                             <td>{deductibleSETax}</td>
                             {stateColumnView(residencyFromStore, NA, deductibleSETax)}
@@ -111,7 +111,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         </tr>
 
                         {taxOtherState.map((item) => 
-                        <tr key={item.id}>
+                        <tr className="table-row-item-regular" key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
                             <td className="table-na-section">{NA}</td>
                             {stateColumnView(residencyFromStore, NA, taxInputDataAnnualized[item.hardValue])}
@@ -124,7 +124,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                             {stateColumnView(residencyFromStore, NA, totalStateOther)}
                         </tr>
 
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">CAPITAL LOSS LIMITATION</th>
                             <td>{capitalLossLimitation}</td>
                             {stateColumnView(residencyFromStore, NA, capitalLossLimitation)}
@@ -150,7 +150,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                             }
                 <tbody style={{borderTop: "none" }}>
                          {taxOtherFederal.map((item) => 
-                        <tr key={item.id}>
+                        <tr className="table-row-item-regular" key={item.id}>
                             <th scope="row" className="table-description-item">{item.element}</th>
                             <td>{parseInt(taxInputDataAnnualized[item.hardValue])}</td>
                             <td className="table-na-section">{NA}</td>
@@ -163,7 +163,7 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                             <td className="table-na-section">{NA}</td>
                         </tr>
 
-                        <tr >
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">STATE DEPENDENT EXEMPTIONS</th>
                             <td className="table-na-section">{NA}</td>
                             {stateColumnView(residencyFromStore, NA, stateDependentExemptions)}
@@ -181,13 +181,13 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                             {stateColumnView(residencyFromStore, NA, stateTaxCalculated)}
                         </tr>
 
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">TOTAL OTHER TAX</th>
                             <td>{federalOtherTaxes}</td>
                             {stateColumnView(residencyFromStore, NA, stateOtherTaxes)}
                         </tr>
 
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">FEDERAL CHILD TAX CREDITS</th>
                             <td>{federalChildTaxCredits}</td>
                             <td className="table-na-section">{NA}</td>
@@ -206,37 +206,37 @@ const NumbersOuputWithTax = ({ numbersInputValuesState, paymentsInputValuesState
                         </tr>
 
                         {/* This section can be re-factored at some point */}
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">{paymentsFederal[0]["element"]}</th>
                             <td>{paymentsInputValuesState["fedWagesWithholding"]}</td>
                             {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateWagesWithholding"])}
                         </tr>
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">{paymentsFederal[1]["element"]}</th>
                             <td>{paymentsInputValuesState["fedPYOP"]}</td>
                             {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["statePYOP"])}
                         </tr>
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">{paymentsFederal[2]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ1"]}</td>
                             {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateQ1"])}
                         </tr>
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">{paymentsFederal[3]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ2"]}</td>
                             {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateQ2"])}
                         </tr>
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">{paymentsFederal[4]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ3"]}</td>
                             {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateQ3"])}
                         </tr>
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">{paymentsFederal[5]["element"]}</th>
                             <td>{paymentsInputValuesState["fedQ4"]}</td>
                             {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateQ4"])}
                         </tr>
-                        <tr>
+                        <tr className="table-row-item-regular">
                             <th scope="row" className="table-description-item">{paymentsFederal[6]["element"]}</th>
                             <td>{paymentsInputValuesState["fedCredits"]}</td>
                             {stateColumnView(residencyFromStore, NA, paymentsInputValuesState["stateCredits"])}
